@@ -12,8 +12,6 @@
     :root{
       --bg:#0b1220;
       --bg2:#0f1a2e;
-      --card:#0f203a;
-      --card2:#0d2b3d;
       --text:#eaf2ff;
       --muted:#9fb2cc;
       --border:rgba(255,255,255,.10);
@@ -44,7 +42,6 @@
       color: var(--text);
     }
 
-    /* Mobile-only feel (non blocca desktop, ma mantiene layout "phone") */
     .app{
       max-width: 430px;
       margin: 0 auto;
@@ -63,24 +60,10 @@
       backdrop-filter: blur(10px);
       box-shadow: 0 10px 28px rgba(0,0,0,.25);
     }
-    .topbar .row{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .brand{
-      display:flex; flex-direction:column; gap:2px;
-    }
-    .brand .t{
-      font-weight: 900;
-      letter-spacing:.2px;
-      font-size: 15px;
-      line-height:1.1;
-    }
-    .brand .s{
-      font-size: 12px;
-      color: var(--muted);
-      line-height:1.2;
-    }
-
+    .topbar .row{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .brand{ display:flex; flex-direction:column; gap:2px; }
+    .brand .t{ font-weight: 900; letter-spacing:.2px; font-size: 15px; line-height:1.1; }
+    .brand .s{ font-size: 12px; color: var(--muted); line-height:1.2; }
     .pill{
       display:flex; align-items:center; gap:8px;
       border: 1px solid var(--border);
@@ -93,10 +76,7 @@
     }
     .dot{ width:10px; height:10px; border-radius:50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(14,165,164,.18); }
 
-    .tabs{
-      display:flex; gap:8px;
-      margin-top:10px;
-    }
+    .tabs{ display:flex; gap:8px; margin-top:10px; }
     .tab{
       flex:1;
       border:1px solid var(--border);
@@ -117,12 +97,7 @@
       box-shadow: 0 12px 28px rgba(14,165,164,.20);
     }
 
-    .grid{
-      margin-top:12px;
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-    }
+    .grid{ margin-top:12px; display:flex; flex-direction:column; gap:12px; }
 
     .card{
       border: 1px solid var(--border);
@@ -163,21 +138,9 @@
     .card.profile{ background: linear-gradient(180deg, rgba(124,58,237,.14), rgba(255,255,255,.05)); }
     .card.calendar{ background: linear-gradient(180deg, rgba(251,113,133,.12), rgba(255,255,255,.05)); }
 
-    .two{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:10px;
-    }
-    .field{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-    }
-    label{
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing:.2px;
-    }
+    .two{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    .field{ display:flex; flex-direction:column; gap:6px; }
+    label{ font-size: 11px; color: var(--muted); letter-spacing:.2px; }
     input, select, textarea{
       width: 100%;
       border: 1px solid rgba(255,255,255,.10);
@@ -217,25 +180,34 @@
       background: rgba(239,68,68,.16);
       border-color: rgba(239,68,68,.35);
     }
-
-    .mini{
-      font-size: 12px;
-      color: var(--muted);
-      line-height:1.35;
+    .btn.small{
+      flex:0 0 auto;
+      width:auto;
+      padding: 10px 12px;
+    }
+    .btn.toggleon{
+      background: rgba(245,158,11,.16);
+      border-color: rgba(245,158,11,.35);
     }
 
-    /* Calendar */
-    .calbar{
-      display:flex;
-      gap:10px;
-      align-items:center;
-    }
+    .mini{ font-size: 12px; color: var(--muted); line-height:1.35; }
+
+    .calbar{ display:flex; gap:10px; align-items:center; }
     .calbar select{ flex: 1; }
-    .calhint{
-      font-size: 11px;
-      color: var(--muted);
-      margin-top:8px;
+    .calhint{ font-size: 11px; color: var(--muted); margin-top:8px; }
+
+    .batchbar{
+      margin-top:10px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(8,18,32,.35);
+      border-radius: 18px;
+      padding: 10px;
+      display:none;
+      gap:10px;
+      flex-direction:column;
     }
+    .batchbar.show{ display:flex; }
+
     .dow{
       display:grid;
       grid-template-columns: repeat(7, 1fr);
@@ -271,20 +243,34 @@
       color: rgba(159,178,204,.9);
       display:flex; gap:4px; align-items:center;
     }
-    .tag{
-      width: 8px; height: 8px; border-radius:50%;
-      opacity:.95;
-    }
-    .day.empty{
-      border-color: transparent;
-      background: transparent;
-      cursor: default;
-    }
+    .tag{ width: 8px; height: 8px; border-radius:50%; opacity:.95; }
+    .day.empty{ border-color: transparent; background: transparent; cursor: default; }
     .day.sel{
       border-color: rgba(14,165,164,.55);
       box-shadow: 0 0 0 3px rgba(14,165,164,.18);
       background: rgba(14,165,164,.12);
     }
+    /* Multi-select highlight */
+    .day.msel{
+      border-color: rgba(245,158,11,.55);
+      box-shadow: 0 0 0 3px rgba(245,158,11,.16);
+      background: rgba(245,158,11,.10);
+    }
+    .day.msel .n{ color: rgba(255,255,255,.98); }
+    .day.msel::before{
+      content:"✓";
+      position:absolute;
+      top:6px; right:8px;
+      font-weight: 1000;
+      font-size: 12px;
+      color: rgba(245,158,11,.95);
+      background: rgba(0,0,0,.18);
+      border:1px solid rgba(255,255,255,.10);
+      width:18px; height:18px;
+      display:flex; align-items:center; justify-content:center;
+      border-radius: 8px;
+    }
+
     .day.monthend::after{
       content:"";
       position:absolute; inset:0;
@@ -292,7 +278,6 @@
       pointer-events:none;
     }
 
-    /* Dashboard stats */
     .kpis{
       display:grid;
       grid-template-columns: repeat(2, 1fr);
@@ -330,7 +315,6 @@
     .status .txt .a{ font-weight: 900; font-size: 13px; }
     .status .txt .b{ color: var(--muted); font-size: 12px; line-height:1.25; }
 
-    /* Modal sheet */
     .modal{
       position: fixed;
       inset:0;
@@ -373,6 +357,7 @@
       font-weight: 1000;
     }
     .sheet .shbody{ padding: 12px; }
+
     .toggles{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
@@ -427,7 +412,6 @@
       background: rgba(8,18,32,.35);
     }
 
-    /* SVG chart */
     .chartwrap{
       border:1px solid rgba(255,255,255,.10);
       background: rgba(8,18,32,.35);
@@ -481,6 +465,7 @@
       </div>
     </div>
 
+    <!-- DASH -->
     <div class="grid" id="viewDash">
       <div class="card weight">
         <div class="head">
@@ -587,6 +572,7 @@
       </div>
     </div>
 
+    <!-- CAL -->
     <div class="grid" id="viewCal" style="display:none;">
       <div class="card calendar">
         <div class="head">
@@ -596,8 +582,36 @@
         <div class="body">
           <div class="calbar">
             <select id="monthSel"></select>
-            <button class="btn primary" id="openDayBtn" style="flex:0 0 auto; width:auto; padding:10px 12px;">✍️ Inserisci</button>
+            <button class="btn primary small" id="openDayBtn">✍️ Inserisci</button>
           </div>
+
+          <div class="btnrow" style="margin-top:10px;">
+            <button class="btn small" id="multiBtn">🟡 Selezione multipla</button>
+            <button class="btn small" id="clearMultiBtn">🧹 Pulisci selezione</button>
+          </div>
+
+          <!-- Batch diet apply -->
+          <div class="batchbar" id="batchDietBar">
+            <div class="mini" id="batchInfo">Seleziona più giorni e applica un tipo di alimentazione.</div>
+            <div class="two">
+              <div class="field">
+                <label>Alimentazione (batch)</label>
+                <select id="batchDiet">
+                  <option value="">— (rimuovi alimentazione)</option>
+                  <option value="Digiuno intermittente (cena)">Digiuno intermittente (cena)</option>
+                  <option value="Digiuno intermittente (pranzo)">Digiuno intermittente (pranzo)</option>
+                  <option value="Digiuno intermittente (colazione)">Digiuno intermittente (colazione)</option>
+                  <option value="Digiuno totale">Digiuno totale</option>
+                </select>
+              </div>
+              <div class="field">
+                <label>&nbsp;</label>
+                <button class="btn primary" id="applyBatchDiet">✅ Applica a selezionati</button>
+              </div>
+            </div>
+            <div class="mini">Puoi sempre modificare il singolo giorno con “✍️ Inserisci”.</div>
+          </div>
+
           <div class="calhint">Legenda: ● peso inserito • ● allenamento • ● dieta. Fine mese evidenziato.</div>
 
           <div class="dow">
@@ -622,6 +636,7 @@
       </div>
     </div>
 
+    <!-- SETTINGS -->
     <div class="grid" id="viewSet" style="display:none;">
       <div class="card profile">
         <div class="head">
@@ -704,7 +719,7 @@
 
   </div>
 
-  <!-- Modal / Bottom sheet per inserimento giorno -->
+  <!-- Modal / Bottom sheet -->
   <div class="modal" id="modal">
     <div class="sheet">
       <div class="shhead">
@@ -758,7 +773,7 @@
         </div>
 
         <div class="mini" style="margin-top:10px;">
-          Questo editor salva: peso, circonferenza, alimentazione e flag allenamento per il giorno selezionato.
+          Editor singolo giorno: puoi modificare tutto (peso, circonferenza, alimentazione, allenamenti).
         </div>
       </div>
     </div>
@@ -771,25 +786,22 @@
 
       const $ = (id)=>document.getElementById(id);
       const tabs = [...document.querySelectorAll(".tab")];
-      const views = {
-        dash: $("viewDash"),
-        cal: $("viewCal"),
-        set: $("viewSet"),
-      };
+      const views = { dash: $("viewDash"), cal: $("viewCal"), set: $("viewSet") };
 
-      // State
       const state = {
         profile: { name:"", age:"", heightCm:"", startWeightKg:"", startCircCm:"" },
         goal: { targetWeightKg:"", targetDate: `${YEAR}-12-31` },
-        entries: {
-          // "2026-01-31": { weightKg: 121.4, circCm: 118, diet:"...", workouts:{gym:true,soccer:false,pool:true} }
-        },
-        ui: { month: 0, selectedDate: null }
+        entries: {},
+        ui: {
+          month: 0,
+          selectedDate: null,
+          multiSel: false,
+          selectedDays: [] // array of ISO dates
+        }
       };
 
-      // Utils
       const pad = (n)=> String(n).padStart(2,"0");
-      const iso = (y,m,d)=> `${y}-${pad(m+1)}-${pad(d)}`; // m: 0..11
+      const iso = (y,m,d)=> `${y}-${pad(m+1)}-${pad(d)}`;
       const itDate = (isoStr)=>{
         const [y,m,d] = isoStr.split("-").map(Number);
         return `${pad(d)}/${pad(m)}/${y}`;
@@ -802,11 +814,8 @@
       };
 
       const monthNames = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
-      const dowNames = ["Lun","Mar","Mer","Gio","Ven","Sab","Dom"];
 
-      function saveLS(){
-        localStorage.setItem(LS_KEY, JSON.stringify(state));
-      }
+      function saveLS(){ localStorage.setItem(LS_KEY, JSON.stringify(state)); }
       function loadLS(){
         const raw = localStorage.getItem(LS_KEY);
         if(!raw) return;
@@ -817,23 +826,19 @@
             if(obj.goal) state.goal = { ...state.goal, ...obj.goal };
             if(obj.entries) state.entries = obj.entries;
             if(obj.ui) state.ui = { ...state.ui, ...obj.ui };
+            // safety: ensure arrays/bools
+            if(!Array.isArray(state.ui.selectedDays)) state.ui.selectedDays = [];
+            state.ui.multiSel = !!state.ui.multiSel;
           }
         }catch(e){}
       }
 
-      // Calendar generation (Monday-first)
       function jsDowMondayFirst(date){
-        // JS: 0=Sun..6=Sat; want 0=Mon..6=Sun
-        const d = date.getDay();
-        return (d + 6) % 7;
+        const d = date.getDay(); // 0 Sun..6 Sat
+        return (d + 6) % 7; // 0 Mon..6 Sun
       }
-      function daysInMonth(y,m){
-        return new Date(y, m+1, 0).getDate();
-      }
-
-      function isMonthEnd(y,m,d){
-        return d === daysInMonth(y,m);
-      }
+      function daysInMonth(y,m){ return new Date(y, m+1, 0).getDate(); }
+      function isMonthEnd(y,m,d){ return d === daysInMonth(y,m); }
 
       function entryHasAny(e){
         if(!e) return false;
@@ -845,22 +850,73 @@
         return (w !== null) || (c !== null) || !!diet || anyWo;
       }
 
+      function toggleInArray(arr, val){
+        const i = arr.indexOf(val);
+        if(i >= 0) arr.splice(i,1);
+        else arr.push(val);
+      }
+
+      function updateSelectedBadge(){
+        if(state.ui.multiSel && state.ui.selectedDays.length){
+          $("selectedDayBadge").textContent = `${state.ui.selectedDays.length} giorni selezionati`;
+        } else if(state.ui.selectedDate) {
+          $("selectedDayBadge").textContent = itDate(state.ui.selectedDate);
+        } else {
+          $("selectedDayBadge").textContent = "Seleziona un giorno";
+        }
+      }
+
+      function updateBatchUI(){
+        const on = state.ui.multiSel;
+        const btn = $("multiBtn");
+        btn.classList.toggle("toggleon", on);
+        btn.textContent = on ? "🟡 Selezione multipla: ON" : "🟡 Selezione multipla";
+        const bar = $("batchDietBar");
+        bar.classList.toggle("show", on);
+        if(on){
+          const n = state.ui.selectedDays.length;
+          $("batchInfo").textContent = n
+            ? `Selezionati: ${n} giorni. Scegli alimentazione e applica.`
+            : "Tocca i giorni da selezionare, poi applica l’alimentazione in batch.";
+        }
+        updateSelectedBadge();
+      }
+
+      function applyDietToSelected(dietValue){
+        const days = [...state.ui.selectedDays].sort();
+        if(!days.length) return;
+
+        days.forEach(k=>{
+          const e = state.entries[k] || { workouts:{gym:false,soccer:false,pool:false} };
+          e.workouts = e.workouts || {gym:false,soccer:false,pool:false};
+
+          e.diet = (dietValue || "").trim();
+
+          if(!entryHasAny(e)) delete state.entries[k];
+          else state.entries[k] = e;
+        });
+
+        saveLS();
+        renderCalendar();
+        refreshAll();
+      }
+
       function renderCalendar(){
         const m = state.ui.month;
         const grid = $("calgrid");
         grid.innerHTML = "";
 
-        // month selector label already managed elsewhere
         const first = new Date(YEAR, m, 1);
-        const offset = jsDowMondayFirst(first); // 0..6
+        const offset = jsDowMondayFirst(first);
         const dim = daysInMonth(YEAR, m);
 
-        // empty cells
         for(let i=0;i<offset;i++){
           const cell = document.createElement("div");
           cell.className = "day empty";
           grid.appendChild(cell);
         }
+
+        const selSet = new Set(state.ui.selectedDays || []);
 
         for(let d=1; d<=dim; d++){
           const dateIso = iso(YEAR,m,d);
@@ -870,6 +926,7 @@
 
           cell.className = "day" + (monthEnd ? " monthend" : "");
           if(state.ui.selectedDate === dateIso) cell.classList.add("sel");
+          if(state.ui.multiSel && selSet.has(dateIso)) cell.classList.add("msel");
 
           const n = document.createElement("div");
           n.className = "n";
@@ -878,7 +935,6 @@
           const mrow = document.createElement("div");
           mrow.className = "m";
 
-          // indicators
           if(e && entryHasAny(e)){
             const hasW = parseNum(e.weightKg) !== null;
             const wo = e.workouts || {};
@@ -893,43 +949,42 @@
             if(hasDiet){
               const t = document.createElement("span"); t.className="tag"; t.style.background="var(--d)"; mrow.appendChild(t);
             }
-          } else {
-            // subtle dot if empty? skip
           }
 
           cell.appendChild(n);
           cell.appendChild(mrow);
 
           cell.addEventListener("click", ()=>{
-            selectDate(dateIso, true);
+            // sempre aggiorno selectedDate per mantenere "✍️ Inserisci" coerente
+            state.ui.selectedDate = dateIso;
+
+            if(state.ui.multiSel){
+              toggleInArray(state.ui.selectedDays, dateIso);
+              saveLS();
+              updateBatchUI();
+              renderCalendar();
+              refreshAll();
+              return;
+            }
+
+            saveLS();
+            updateSelectedBadge();
+            renderCalendar();
           });
 
           grid.appendChild(cell);
         }
       }
 
-      function selectDate(dateIso, openModal=false){
-        state.ui.selectedDate = dateIso;
-        saveLS();
-        $("selectedDayBadge").textContent = itDate(dateIso);
-        renderCalendar();
-        if(openModal) openDayEditor();
-        refreshAll();
-      }
-
-      // Day editor
       function openDayEditor(){
-        const dateIso = state.ui.selectedDate;
-        if(!dateIso){
-          // default: first day of selected month
-          selectDate(iso(YEAR, state.ui.month, 1), false);
+        if(!state.ui.selectedDate){
+          state.ui.selectedDate = iso(YEAR, state.ui.month, 1);
+          saveLS();
         }
         const dIso = state.ui.selectedDate;
         const e = state.entries[dIso] || { weightKg:"", circCm:"", diet:"", workouts:{gym:false,soccer:false,pool:false} };
-        // normalize
         e.workouts = e.workouts || {gym:false,soccer:false,pool:false};
 
-        $("sheetTitle").childNodes[0].textContent = "Giorno";
         $("sheetSub").textContent = itDate(dIso) + " • " + monthNames[state.ui.month] + " " + YEAR;
 
         $("dayWeight").value = (e.weightKg ?? "");
@@ -942,10 +997,7 @@
 
         $("modal").classList.add("open");
       }
-
-      function closeDayEditor(){
-        $("modal").classList.remove("open");
-      }
+      function closeDayEditor(){ $("modal").classList.remove("open"); }
 
       function setToggleUI(kind, on){
         const map = { gym:"tGym", soccer:"tSoccer", pool:"tPool" };
@@ -953,28 +1005,193 @@
         if(!el) return;
         el.classList.toggle("on", !!on);
       }
-
       function getToggleUI(kind){
         const map = { gym:"tGym", soccer:"tSoccer", pool:"tPool" };
         const el = $(map[kind]);
         return el && el.classList.contains("on");
       }
 
-      // Stats
-      function monthRange(monthIndex){
-        const start = new Date(YEAR, monthIndex, 1);
-        const end = new Date(YEAR, monthIndex+1, 0);
-        return { start, end };
+      function monthEndWeights(){
+        const arr = new Array(12).fill(null);
+        for(let m=0; m<12; m++){
+          const dim = daysInMonth(YEAR, m);
+          let found = null;
+          for(let d=dim; d>=1; d--){
+            const k = iso(YEAR,m,d);
+            const e = state.entries[k];
+            if(e){
+              const w = parseNum(e.weightKg);
+              if(w !== null){ found = w; break; }
+            }
+          }
+          arr[m] = found;
+        }
+        return arr;
+      }
+
+      function lastKnownWeight(){
+        const keys = Object.keys(state.entries).sort();
+        for(let i=keys.length-1; i>=0; i--){
+          const e = state.entries[keys[i]];
+          const w = e ? parseNum(e.weightKg) : null;
+          if(w !== null) return { date: keys[i], weight: w };
+        }
+        return null;
+      }
+
+      function expectedWeightOn(dateObj){
+        const sw = parseNum(state.profile.startWeightKg);
+        const tw = parseNum(state.goal.targetWeightKg);
+        const td = state.goal.targetDate ? new Date(state.goal.targetDate+"T00:00:00") : new Date(`${YEAR}-12-31T00:00:00`);
+        if(sw === null || tw === null) return null;
+
+        const start = new Date(`${YEAR}-01-01T00:00:00`);
+        const cur = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+        const totalDays = (td - start) / 86400000;
+        if(totalDays <= 0) return tw;
+
+        const curDays = (cur - start) / 86400000;
+        const t = clamp(curDays / totalDays, 0, 1);
+        return sw + (tw - sw) * t;
+      }
+
+      function requiredMonthlyLoss(){
+        const sw = parseNum(state.profile.startWeightKg);
+        const tw = parseNum(state.goal.targetWeightKg);
+        const td = state.goal.targetDate ? new Date(state.goal.targetDate+"T00:00:00") : new Date(`${YEAR}-12-31T00:00:00`);
+        if(sw === null || tw === null) return null;
+
+        const start = new Date(`${YEAR}-01-01T00:00:00`);
+        let months = (td.getFullYear()-start.getFullYear())*12 + (td.getMonth()-start.getMonth()) + 1;
+        months = clamp(months, 1, 24);
+        const diff = sw - tw;
+        return diff / months;
+      }
+
+      function renderWeightChart(){
+        const svg = $("weightSvg");
+        svg.innerHTML = "";
+
+        const wArr = monthEndWeights();
+        const sw = parseNum(state.profile.startWeightKg);
+        const tw = parseNum(state.goal.targetWeightKg);
+
+        const proj = new Array(12).fill(null);
+        if(sw !== null && tw !== null){
+          for(let m=0; m<12; m++){
+            const t = (m) / 11;
+            proj[m] = sw + (tw - sw) * t;
+          }
+        }
+
+        const vals = [];
+        wArr.forEach(v=> { if(v !== null) vals.push(v); });
+        proj.forEach(v=> { if(v !== null) vals.push(v); });
+
+        let vmin = 60, vmax = 140;
+        if(vals.length){
+          vmin = Math.min(...vals);
+          vmax = Math.max(...vals);
+          const padv = Math.max(2, (vmax - vmin) * 0.12);
+          vmin -= padv; vmax += padv;
+        }
+        if(vmax - vmin < 5){ vmax += 3; vmin -= 2; }
+
+        const W = 340, H = 180;
+        const padX = 18, padY = 16;
+        const plotW = W - padX*2;
+        const plotH = H - padY*2;
+
+        const x = (i)=> padX + (plotW * (i/11));
+        const y = (v)=> padY + (plotH * (1 - ((v - vmin) / (vmax - vmin))));
+
+        for(let i=0;i<3;i++){
+          const yy = padY + (plotH*(i/2));
+          const line = document.createElementNS("http://www.w3.org/2000/svg","line");
+          line.setAttribute("x1","0"); line.setAttribute("x2",W);
+          line.setAttribute("y1",yy); line.setAttribute("y2",yy);
+          line.setAttribute("stroke","rgba(255,255,255,.08)");
+          line.setAttribute("stroke-width","1");
+          svg.appendChild(line);
+        }
+
+        const mkText = (tx,ty,txt,op=1)=>{
+          const t = document.createElementNS("http://www.w3.org/2000/svg","text");
+          t.setAttribute("x", tx);
+          t.setAttribute("y", ty);
+          t.setAttribute("fill", `rgba(159,178,204,${op})`);
+          t.setAttribute("font-size", "11");
+          t.setAttribute("font-weight","800");
+          t.textContent = txt;
+          return t;
+        };
+        svg.appendChild(mkText(8, 14, `${round1(vmax)} kg`, .9));
+        svg.appendChild(mkText(8, H-6, `${round1(vmin)} kg`, .7));
+
+        function polyline(points, stroke, dashed=false){
+          const pl = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          pl.setAttribute("fill","none");
+          pl.setAttribute("stroke", stroke);
+          pl.setAttribute("stroke-width","3");
+          pl.setAttribute("stroke-linecap","round");
+          pl.setAttribute("stroke-linejoin","round");
+          if(dashed) pl.setAttribute("stroke-dasharray","6 6");
+          pl.setAttribute("points", points.map(p=> `${p[0]},${p[1]}`).join(" "));
+          return pl;
+        }
+
+        if(proj.some(v=>v!==null)){
+          const pts = proj.map((v,i)=> [x(i), y(v)]);
+          svg.appendChild(polyline(pts, "rgba(14,165,164,.95)", true));
+        }
+
+        let seg = [];
+        for(let i=0;i<12;i++){
+          const v = wArr[i];
+          if(v === null){
+            if(seg.length >= 2) svg.appendChild(polyline(seg, "rgba(96,165,250,.95)", false));
+            seg = [];
+            continue;
+          }
+          seg.push([x(i), y(v)]);
+        }
+        if(seg.length >= 2) svg.appendChild(polyline(seg, "rgba(96,165,250,.95)", false));
+
+        wArr.forEach((v,i)=>{
+          if(v === null) return;
+          const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
+          c.setAttribute("cx", x(i));
+          c.setAttribute("cy", y(v));
+          c.setAttribute("r","4.2");
+          c.setAttribute("fill","rgba(96,165,250,1)");
+          c.setAttribute("stroke","rgba(255,255,255,.18)");
+          c.setAttribute("stroke-width","1");
+          svg.appendChild(c);
+        });
+
+        const tickIdx = [0,3,6,9,11];
+        tickIdx.forEach((i,ix)=>{
+          const t = document.createElementNS("http://www.w3.org/2000/svg","text");
+          t.setAttribute("x", x(i));
+          t.setAttribute("y", H-6);
+          t.setAttribute("fill", "rgba(159,178,204,.85)");
+          t.setAttribute("font-size","10");
+          t.setAttribute("font-weight","900");
+          t.setAttribute("text-anchor","middle");
+          t.textContent = ["Gen","Apr","Lug","Ott","Dic"][ix];
+          svg.appendChild(t);
+        });
       }
 
       function rangeFor(period){
         const m = state.ui.month;
         if(period === "month"){
-          const r = monthRange(m);
-          return { start: r.start, end: r.end, label: `${monthNames[m]} ${YEAR}` };
+          const start = new Date(YEAR, m, 1);
+          const end = new Date(YEAR, m+1, 0);
+          return { start, end, label: `${monthNames[m]} ${YEAR}` };
         }
         if(period === "quarter"){
-          const q = Math.floor(m/3); // 0..3
+          const q = Math.floor(m/3);
           const m0 = q*3;
           const start = new Date(YEAR, m0, 1);
           const end = new Date(YEAR, m0+3, 0);
@@ -987,12 +1204,10 @@
           const end = new Date(YEAR, m0+6, 0);
           return { start, end, label: `S${s+1} ${YEAR} (${monthNames[m0]}–${monthNames[m0+5]})` };
         }
-        // year
         return { start: new Date(YEAR,0,1), end: new Date(YEAR,11,31), label: `${YEAR}` };
       }
 
       function iterateEntriesInRange(startDate, endDate, fn){
-        // inclusive
         const startIso = iso(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
         const endIso = iso(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
         const keys = Object.keys(state.entries).filter(k => k >= startIso && k <= endIso).sort();
@@ -1038,198 +1253,6 @@
         return { ...r, counts, none, totalLogged: total, totalDaysWithAny: total + none };
       }
 
-      // Weight: use "fine mese" = last day in month with weight
-      function monthEndWeights(){
-        const arr = new Array(12).fill(null);
-        for(let m=0; m<12; m++){
-          const dim = daysInMonth(YEAR, m);
-          // find last entry in month that has weight
-          let found = null;
-          for(let d=dim; d>=1; d--){
-            const k = iso(YEAR,m,d);
-            const e = state.entries[k];
-            if(e){
-              const w = parseNum(e.weightKg);
-              if(w !== null){
-                found = w;
-                break;
-              }
-            }
-          }
-          arr[m] = found;
-        }
-        return arr;
-      }
-
-      function lastKnownWeight(){
-        const keys = Object.keys(state.entries).sort();
-        for(let i=keys.length-1; i>=0; i--){
-          const e = state.entries[keys[i]];
-          const w = e ? parseNum(e.weightKg) : null;
-          if(w !== null) return { date: keys[i], weight: w };
-        }
-        return null;
-      }
-
-      function expectedWeightOn(dateObj){
-        const sw = parseNum(state.profile.startWeightKg);
-        const tw = parseNum(state.goal.targetWeightKg);
-        const td = state.goal.targetDate ? new Date(state.goal.targetDate+"T00:00:00") : new Date(`${YEAR}-12-31T00:00:00`);
-        if(sw === null || tw === null) return null;
-
-        const start = new Date(`${YEAR}-01-01T00:00:00`);
-        const cur = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
-        // if user starts later, still project from Jan 1 (bozza). In versione 2 possiamo aggiungere data inizio.
-        const totalDays = (td - start) / 86400000;
-        if(totalDays <= 0) return tw;
-
-        const curDays = (cur - start) / 86400000;
-        const t = clamp(curDays / totalDays, 0, 1);
-        return sw + (tw - sw) * t;
-      }
-
-      function requiredMonthlyLoss(){
-        const sw = parseNum(state.profile.startWeightKg);
-        const tw = parseNum(state.goal.targetWeightKg);
-        const td = state.goal.targetDate ? new Date(state.goal.targetDate+"T00:00:00") : new Date(`${YEAR}-12-31T00:00:00`);
-        if(sw === null || tw === null) return null;
-
-        const start = new Date(`${YEAR}-01-01T00:00:00`);
-        let months = (td.getFullYear()-start.getFullYear())*12 + (td.getMonth()-start.getMonth()) + 1; // inclusive
-        months = clamp(months, 1, 24);
-        const diff = sw - tw; // positive if need to lose
-        return diff / months;
-      }
-
-      // SVG chart
-      function renderWeightChart(){
-        const svg = $("weightSvg");
-        svg.innerHTML = "";
-
-        const wArr = monthEndWeights();
-        const sw = parseNum(state.profile.startWeightKg);
-        const tw = parseNum(state.goal.targetWeightKg);
-
-        // Build projected monthly points if possible
-        const proj = new Array(12).fill(null);
-        if(sw !== null && tw !== null){
-          for(let m=0; m<12; m++){
-            const t = (m) / 11; // Jan..Dec
-            proj[m] = sw + (tw - sw) * t;
-          }
-        }
-
-        // Determine min/max
-        const vals = [];
-        wArr.forEach(v=> { if(v !== null) vals.push(v); });
-        proj.forEach(v=> { if(v !== null) vals.push(v); });
-
-        // fallback range
-        let vmin = 60, vmax = 140;
-        if(vals.length){
-          vmin = Math.min(...vals);
-          vmax = Math.max(...vals);
-          const padv = Math.max(2, (vmax - vmin) * 0.12);
-          vmin -= padv; vmax += padv;
-        }
-        if(vmax - vmin < 5){ vmax += 3; vmin -= 2; }
-
-        const W = 340, H = 180;
-        const padX = 18, padY = 16;
-        const plotW = W - padX*2;
-        const plotH = H - padY*2;
-
-        const x = (i)=> padX + (plotW * (i/11));
-        const y = (v)=> padY + (plotH * (1 - ((v - vmin) / (vmax - vmin))));
-
-        // grid lines (3)
-        for(let i=0;i<3;i++){
-          const yy = padY + (plotH*(i/2));
-          const line = document.createElementNS("http://www.w3.org/2000/svg","line");
-          line.setAttribute("x1","0"); line.setAttribute("x2",W);
-          line.setAttribute("y1",yy); line.setAttribute("y2",yy);
-          line.setAttribute("stroke","rgba(255,255,255,.08)");
-          line.setAttribute("stroke-width","1");
-          svg.appendChild(line);
-        }
-
-        // y labels (min/max)
-        const mkText = (tx,ty,txt,op=1)=>{
-          const t = document.createElementNS("http://www.w3.org/2000/svg","text");
-          t.setAttribute("x", tx);
-          t.setAttribute("y", ty);
-          t.setAttribute("fill", `rgba(159,178,204,${op})`);
-          t.setAttribute("font-size", "11");
-          t.setAttribute("font-weight","800");
-          t.textContent = txt;
-          return t;
-        };
-        svg.appendChild(mkText(8, 14, `${round1(vmax)} kg`, .9));
-        svg.appendChild(mkText(8, H-6, `${round1(vmin)} kg`, .7));
-
-        function polyline(points, stroke, dashed=false){
-          const pl = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-          pl.setAttribute("fill","none");
-          pl.setAttribute("stroke", stroke);
-          pl.setAttribute("stroke-width","3");
-          pl.setAttribute("stroke-linecap","round");
-          pl.setAttribute("stroke-linejoin","round");
-          if(dashed) pl.setAttribute("stroke-dasharray","6 6");
-          pl.setAttribute("points", points.map(p=> `${p[0]},${p[1]}`).join(" "));
-          return pl;
-        }
-
-        // projected line
-        if(proj.some(v=>v!==null)){
-          const pts = proj.map((v,i)=> [x(i), y(v)]);
-          svg.appendChild(polyline(pts, "rgba(14,165,164,.95)", true));
-        }
-
-        // real line with gaps: draw segments for consecutive non-null
-        let seg = [];
-        for(let i=0;i<12;i++){
-          const v = wArr[i];
-          if(v === null){
-            if(seg.length >= 2){
-              svg.appendChild(polyline(seg, "rgba(96,165,250,.95)", false));
-            }
-            seg = [];
-            continue;
-          }
-          seg.push([x(i), y(v)]);
-        }
-        if(seg.length >= 2){
-          svg.appendChild(polyline(seg, "rgba(96,165,250,.95)", false));
-        }
-
-        // points for real weights
-        wArr.forEach((v,i)=>{
-          if(v === null) return;
-          const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
-          c.setAttribute("cx", x(i));
-          c.setAttribute("cy", y(v));
-          c.setAttribute("r","4.2");
-          c.setAttribute("fill","rgba(96,165,250,1)");
-          c.setAttribute("stroke","rgba(255,255,255,.18)");
-          c.setAttribute("stroke-width","1");
-          svg.appendChild(c);
-        });
-
-        // month ticks (Jan, Apr, Jul, Oct, Dec)
-        const tickIdx = [0,3,6,9,11];
-        tickIdx.forEach(i=>{
-          const t = document.createElementNS("http://www.w3.org/2000/svg","text");
-          t.setAttribute("x", x(i));
-          t.setAttribute("y", H-6);
-          t.setAttribute("fill", "rgba(159,178,204,.85)");
-          t.setAttribute("font-size","10");
-          t.setAttribute("font-weight","900");
-          t.setAttribute("text-anchor","middle");
-          t.textContent = ["Gen","Apr","Lug","Ott","Dic"][tickIdx.indexOf(i)];
-          svg.appendChild(t);
-        });
-      }
-
       function refreshProfileUI(){
         const name = (state.profile.name || "").trim();
         const age = (state.profile.age || "").toString().trim();
@@ -1241,11 +1264,8 @@
         if(h) sub.push(`${h} cm`);
 
         $("subtitle").textContent = sub.length ? sub.join(" • ") : "Profilo + calendario + dashboard";
-
         $("profileBadge").textContent = name ? name : "Profilo non impostato";
-        $("profileMini").textContent = sub.length
-          ? `Profilo: ${sub.join(" • ")}`
-          : "Compila il profilo nelle impostazioni. I dati si salvano automaticamente in locale.";
+        $("profileMini").textContent = sub.length ? `Profilo: ${sub.join(" • ")}` : "Compila il profilo nelle impostazioni. I dati si salvano automaticamente in locale.";
 
         const sw = parseNum(state.profile.startWeightKg);
         const tw = parseNum(state.goal.targetWeightKg);
@@ -1256,10 +1276,8 @@
         $("kpiTarget").textContent = (tw !== null) ? `${round1(tw)} kg` : "—";
         $("kpiTargetSub").textContent = state.goal.targetDate ? `entro ${itDate(state.goal.targetDate)}` : `entro 31/12/${YEAR}`;
 
-        // Goal badge
         $("goalBadge").textContent = state.goal.targetDate ? `entro ${itDate(state.goal.targetDate)}` : `entro 31/12/${YEAR}`;
 
-        // Projection note
         const req = requiredMonthlyLoss();
         if(req === null){
           $("projectionNote").textContent = "Imposta peso iniziale e peso obiettivo: calcolo la perdita media mensile necessaria e il confronto reale vs proiezione.";
@@ -1287,11 +1305,8 @@
         const today = new Date();
         $("todayTxt").textContent = `Oggi • ${pad(today.getDate())}/${pad(today.getMonth()+1)}/${today.getFullYear()}`;
 
-        // expected on today
         let expected = null;
-        if(sw !== null && tw !== null){
-          expected = expectedWeightOn(today);
-        }
+        if(sw !== null && tw !== null) expected = expectedWeightOn(today);
 
         if(expected === null || !last){
           $("kpiDelta").textContent = "—";
@@ -1303,24 +1318,21 @@
           return;
         }
 
-        const delta = last.weight - expected; // positive = sopra (peggio se devi scendere)
+        const delta = last.weight - expected;
         const absd = Math.abs(delta);
         const sign = delta > 0 ? "+" : "−";
         $("kpiDelta").textContent = `${sign}${round1(absd)} kg`;
         $("kpiDeltaSub").textContent = `atteso oggi: ${round1(expected)} kg`;
 
-        // Determine status
-        // se devi dimagrire (sw > tw), delta>0 => sei sopra l'atteso (in ritardo)
         const needLose = (sw > tw);
         let cls="warn", ico="≈", title="Quasi in linea", text="";
+        const tol = 0.8;
 
-        const tol = 0.8; // tolleranza bozza
         if(needLose){
           if(delta <= tol){ cls="ok"; ico="✓"; title="In linea"; text = `Sei a ${round1(last.weight)} kg, proiezione ${round1(expected)} kg: buon ritmo.`; }
-          else if(delta <= 2.5){ cls="warn"; ico="!"; title="Leggermente sopra"; text = `Sei sopra la proiezione di ${round1(delta)} kg. Piccole correzioni su alimentazione/attività e rientri.`; }
-          else { cls="bad"; ico="↗"; title="Fuori linea"; text = `Sei sopra la proiezione di ${round1(delta)} kg. Serve aumentare costanza (allenamenti) e/o ricalibrare obiettivo.`; }
+          else if(delta <= 2.5){ cls="warn"; ico="!"; title="Leggermente sopra"; text = `Sei sopra la proiezione di ${round1(delta)} kg. Piccole correzioni e rientri.`; }
+          else { cls="bad"; ico="↗"; title="Fuori linea"; text = `Sei sopra la proiezione di ${round1(delta)} kg. Serve più costanza o ricalibrare obiettivo.`; }
         } else {
-          // caso aumento peso
           if(delta >= -tol){ cls="ok"; ico="✓"; title="In linea"; text = `Sei a ${round1(last.weight)} kg, proiezione ${round1(expected)} kg: buon ritmo.`; }
           else if(delta >= -2.5){ cls="warn"; ico="!"; title="Leggermente sotto"; text = `Sei sotto la proiezione di ${round1(absd)} kg.`; }
           else { cls="bad"; ico="↘"; title="Fuori linea"; text = `Sei sotto la proiezione di ${round1(absd)} kg.`; }
@@ -1342,7 +1354,6 @@
         $("wPool").textContent = r.pool;
         $("wDays").textContent = r.days;
         $("wLabel").textContent = r.label;
-
         $("wMix").textContent = `${r.gym}/${r.soccer}/${r.pool}`;
         $("wPeriodHint").textContent = `Periodo: ${r.label}. (Calcolato sui flag giornalieri)`;
       }
@@ -1361,7 +1372,6 @@
           box.appendChild(d);
         };
 
-        // Most useful order
         add("D. interm. (cena)", r.counts["Digiuno intermittente (cena)"] || 0);
         add("D. interm. (pranzo)", r.counts["Digiuno intermittente (pranzo)"] || 0);
         add("D. interm. (colazione)", r.counts["Digiuno intermittente (colazione)"] || 0);
@@ -1378,9 +1388,7 @@
         refreshFoodCards();
       }
 
-      // Inputs binding
       function bindSettings(){
-        // Profile
         $("name").value = state.profile.name ?? "";
         $("age").value = state.profile.age ?? "";
         $("height").value = state.profile.heightCm ?? "";
@@ -1418,16 +1426,20 @@
           sel.appendChild(opt);
         });
         sel.value = String(state.ui.month);
+
         sel.addEventListener("change", ()=>{
           state.ui.month = Number(sel.value);
-          saveLS();
-          // default selection: 1st of month
+
+          // se cambio mese, la selezione multipla si svuota per evitare confusione
+          state.ui.selectedDays = [];
+          state.ui.multiSel = false;
+
           if(!state.ui.selectedDate || state.ui.selectedDate.slice(0,7) !== `${YEAR}-${pad(state.ui.month+1)}`){
             state.ui.selectedDate = iso(YEAR, state.ui.month, 1);
           }
           saveLS();
           renderCalendar();
-          $("selectedDayBadge").textContent = itDate(state.ui.selectedDate);
+          updateBatchUI();
           refreshAll();
         });
       }
@@ -1440,8 +1452,10 @@
             const tab = t.dataset.tab;
 
             Object.keys(views).forEach(k=> views[k].style.display = (k===tab) ? "" : "none");
-            // refresh calendar view on open
-            if(tab === "cal") renderCalendar();
+            if(tab === "cal"){
+              renderCalendar();
+              updateBatchUI();
+            }
             refreshAll();
           });
         });
@@ -1449,10 +1463,6 @@
 
       function bindDayEditor(){
         $("openDayBtn").addEventListener("click", ()=>{
-          if(!state.ui.selectedDate){
-            state.ui.selectedDate = iso(YEAR, state.ui.month, 1);
-            saveLS();
-          }
           openDayEditor();
         });
         $("closeModal").addEventListener("click", closeDayEditor);
@@ -1460,11 +1470,8 @@
           if(e.target === $("modal")) closeDayEditor();
         });
 
-        // Toggle handlers
         ["tGym","tSoccer","tPool"].forEach(id=>{
-          $(id).addEventListener("click", ()=>{
-            $(id).classList.toggle("on");
-          });
+          $(id).addEventListener("click", ()=> $(id).classList.toggle("on"));
         });
 
         $("saveDay").addEventListener("click", ()=>{
@@ -1477,22 +1484,19 @@
 
           e.weightKg = w ? String(w) : "";
           e.circCm = c ? String(c) : "";
-          e.diet = $("dayDiet").value || "";
+          e.diet = ($("dayDiet").value || "").trim();
 
           e.workouts.gym = getToggleUI("gym");
           e.workouts.soccer = getToggleUI("soccer");
           e.workouts.pool = getToggleUI("pool");
 
-          // If empty -> remove entry
-          if(!entryHasAny(e)){
-            delete state.entries[k];
-          } else {
-            state.entries[k] = e;
-          }
+          if(!entryHasAny(e)) delete state.entries[k];
+          else state.entries[k] = e;
 
           saveLS();
           closeDayEditor();
           renderCalendar();
+          updateBatchUI();
           refreshAll();
         });
 
@@ -1502,17 +1506,14 @@
           saveLS();
           closeDayEditor();
           renderCalendar();
+          updateBatchUI();
           refreshAll();
         });
       }
 
       function bindQuickNav(){
-        $("jumpToSettings").addEventListener("click", ()=>{
-          tabs.find(t=>t.dataset.tab==="set").click();
-        });
-        $("jumpToDash").addEventListener("click", ()=>{
-          tabs.find(t=>t.dataset.tab==="dash").click();
-        });
+        $("jumpToSettings").addEventListener("click", ()=> tabs.find(t=>t.dataset.tab==="set").click());
+        $("jumpToDash").addEventListener("click", ()=> tabs.find(t=>t.dataset.tab==="dash").click());
       }
 
       function bindPeriods(){
@@ -1520,7 +1521,32 @@
         $("foodPeriod").addEventListener("change", refreshFoodCards);
       }
 
-      // Export / Import
+      function bindMultiSelect(){
+        $("multiBtn").addEventListener("click", ()=>{
+          state.ui.multiSel = !state.ui.multiSel;
+          if(!state.ui.multiSel) state.ui.selectedDays = [];
+          saveLS();
+          renderCalendar();
+          updateBatchUI();
+        });
+
+        $("clearMultiBtn").addEventListener("click", ()=>{
+          state.ui.selectedDays = [];
+          saveLS();
+          renderCalendar();
+          updateBatchUI();
+        });
+
+        $("applyBatchDiet").addEventListener("click", ()=>{
+          if(!state.ui.selectedDays.length){
+            alert("Seleziona almeno 1 giorno nel calendario.");
+            return;
+          }
+          const val = $("batchDiet").value || "";
+          applyDietToSelected(val);
+        });
+      }
+
       function bindDataTools(){
         $("exportBtn").addEventListener("click", ()=>{
           const data = JSON.stringify(state, null, 2);
@@ -1542,20 +1568,22 @@
             const txt = await file.text();
             const obj = JSON.parse(txt);
             if(!obj || typeof obj !== "object") throw new Error("json");
-            // minimal merge
+
             if(obj.profile) state.profile = { ...state.profile, ...obj.profile };
             if(obj.goal) state.goal = { ...state.goal, ...obj.goal };
             if(obj.entries) state.entries = obj.entries;
             if(obj.ui) state.ui = { ...state.ui, ...obj.ui };
 
-            // enforce year month selection and targetDate default
             if(!state.goal.targetDate) state.goal.targetDate = `${YEAR}-12-31`;
             if(!Number.isFinite(state.ui.month)) state.ui.month = 0;
+            if(!Array.isArray(state.ui.selectedDays)) state.ui.selectedDays = [];
+            state.ui.multiSel = !!state.ui.multiSel;
 
             saveLS();
             bindSettings();
             bindMonthSelector();
             renderCalendar();
+            updateBatchUI();
             refreshAll();
             alert("Import completato ✅");
           }catch(err){
@@ -1573,11 +1601,10 @@
         });
       }
 
-      // Init
       function initDefaultSelection(){
-        // If no selected date, pick today if in 2026 else first of current month in 2026
         const now = new Date();
         const month = (state.ui.month ?? 0);
+
         if(!state.ui.selectedDate){
           if(now.getFullYear() === YEAR){
             state.ui.month = now.getMonth();
@@ -1588,12 +1615,11 @@
           }
           saveLS();
         } else {
-          // keep month aligned with selected date
           const m = Number(state.ui.selectedDate.slice(5,7)) - 1;
           if(Number.isFinite(m)) state.ui.month = clamp(m,0,11);
         }
 
-        $("selectedDayBadge").textContent = itDate(state.ui.selectedDate);
+        updateSelectedBadge();
       }
 
       loadLS();
@@ -1605,9 +1631,11 @@
       bindDayEditor();
       bindQuickNav();
       bindPeriods();
+      bindMultiSelect();
       bindDataTools();
 
       renderCalendar();
+      updateBatchUI();
       refreshAll();
     })();
   </script>
