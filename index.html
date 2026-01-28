@@ -1,0 +1,1615 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta name="theme-color" content="#0ea5a4" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Progressi Peso • 2026</title>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --bg2:#0f1a2e;
+      --card:#0f203a;
+      --card2:#0d2b3d;
+      --text:#eaf2ff;
+      --muted:#9fb2cc;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 16px 40px rgba(0,0,0,.35);
+      --radius:18px;
+
+      --accent:#0ea5a4;    /* tiffany */
+      --accent2:#7c3aed;   /* viola */
+      --good:#22c55e;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+
+      --w:#60a5fa;   /* peso */
+      --g:#34d399;   /* palestra */
+      --s:#fb7185;   /* calcio */
+      --p:#a78bfa;   /* piscina */
+      --d:#fbbf24;   /* dieta */
+    }
+
+    *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      background: radial-gradient(1200px 700px at 20% -10%, rgba(14,165,164,.25), transparent 60%),
+                  radial-gradient(900px 600px at 100% 10%, rgba(124,58,237,.18), transparent 55%),
+                  linear-gradient(180deg, var(--bg), var(--bg2));
+      color: var(--text);
+    }
+
+    /* Mobile-only feel (non blocca desktop, ma mantiene layout "phone") */
+    .app{
+      max-width: 430px;
+      margin: 0 auto;
+      min-height:100%;
+      padding: 14px 12px 26px;
+    }
+
+    .topbar{
+      position: sticky;
+      top:0;
+      z-index: 50;
+      padding: 10px 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(12,22,42,.68);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+    }
+    .topbar .row{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .brand{
+      display:flex; flex-direction:column; gap:2px;
+    }
+    .brand .t{
+      font-weight: 900;
+      letter-spacing:.2px;
+      font-size: 15px;
+      line-height:1.1;
+    }
+    .brand .s{
+      font-size: 12px;
+      color: var(--muted);
+      line-height:1.2;
+    }
+
+    .pill{
+      display:flex; align-items:center; gap:8px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      padding: 8px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .dot{ width:10px; height:10px; border-radius:50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(14,165,164,.18); }
+
+    .tabs{
+      display:flex; gap:8px;
+      margin-top:10px;
+    }
+    .tab{
+      flex:1;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      padding: 10px 10px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 13px;
+      text-align:center;
+      cursor:pointer;
+      user-select:none;
+    }
+    .tab.active{
+      color: #081523;
+      background: linear-gradient(135deg, rgba(14,165,164,1), rgba(96,165,250,1));
+      border-color: rgba(255,255,255,.08);
+      box-shadow: 0 12px 28px rgba(14,165,164,.20);
+    }
+
+    .grid{
+      margin-top:12px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .card{
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card .head{
+      padding: 12px 12px 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .card .head .title{
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing:.2px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .badge{
+      font-size: 11px;
+      color: rgba(255,255,255,.92);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      white-space:nowrap;
+    }
+    .card .body{ padding: 12px; }
+
+    .card.weight{ background: linear-gradient(180deg, rgba(96,165,250,.14), rgba(255,255,255,.05)); }
+    .card.goal{ background: linear-gradient(180deg, rgba(14,165,164,.16), rgba(255,255,255,.05)); }
+    .card.workout{ background: linear-gradient(180deg, rgba(34,197,94,.14), rgba(255,255,255,.05)); }
+    .card.food{ background: linear-gradient(180deg, rgba(245,158,11,.14), rgba(255,255,255,.05)); }
+    .card.profile{ background: linear-gradient(180deg, rgba(124,58,237,.14), rgba(255,255,255,.05)); }
+    .card.calendar{ background: linear-gradient(180deg, rgba(251,113,133,.12), rgba(255,255,255,.05)); }
+
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    label{
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing:.2px;
+    }
+    input, select, textarea{
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(8,18,32,.55);
+      color: var(--text);
+      padding: 10px 10px;
+      border-radius: 14px;
+      outline: none;
+      font-size: 14px;
+    }
+    input::placeholder, textarea::placeholder{ color: rgba(159,178,204,.65); }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(14,165,164,.55);
+      box-shadow: 0 0 0 3px rgba(14,165,164,.18);
+    }
+
+    .btnrow{ display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{
+      flex:1;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 14px;
+      font-weight: 800;
+      font-size: 13px;
+      cursor:pointer;
+      user-select:none;
+      display:flex; align-items:center; justify-content:center; gap:8px;
+    }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(14,165,164,1), rgba(96,165,250,1));
+      border-color: rgba(255,255,255,.08);
+      color: #081523;
+    }
+    .btn.danger{
+      background: rgba(239,68,68,.16);
+      border-color: rgba(239,68,68,.35);
+    }
+
+    .mini{
+      font-size: 12px;
+      color: var(--muted);
+      line-height:1.35;
+    }
+
+    /* Calendar */
+    .calbar{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+    .calbar select{ flex: 1; }
+    .calhint{
+      font-size: 11px;
+      color: var(--muted);
+      margin-top:8px;
+    }
+    .dow{
+      display:grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap:6px;
+      padding: 10px 12px 0;
+      color: rgba(159,178,204,.9);
+      font-size: 11px;
+    }
+    .calgrid{
+      display:grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap:6px;
+      padding: 10px 12px 12px;
+    }
+    .day{
+      aspect-ratio: 1 / 1;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(8,18,32,.45);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:4px;
+      cursor:pointer;
+      user-select:none;
+      position: relative;
+      overflow:hidden;
+    }
+    .day .n{ font-weight: 900; font-size: 13px; }
+    .day .m{
+      font-size: 10px;
+      color: rgba(159,178,204,.9);
+      display:flex; gap:4px; align-items:center;
+    }
+    .tag{
+      width: 8px; height: 8px; border-radius:50%;
+      opacity:.95;
+    }
+    .day.empty{
+      border-color: transparent;
+      background: transparent;
+      cursor: default;
+    }
+    .day.sel{
+      border-color: rgba(14,165,164,.55);
+      box-shadow: 0 0 0 3px rgba(14,165,164,.18);
+      background: rgba(14,165,164,.12);
+    }
+    .day.monthend::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(135deg, rgba(245,158,11,.18), transparent 60%);
+      pointer-events:none;
+    }
+
+    /* Dashboard stats */
+    .kpis{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:10px;
+      margin-top: 10px;
+    }
+    .kpi{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(8,18,32,.40);
+      border-radius: 16px;
+      padding: 10px 10px;
+    }
+    .kpi .l{ font-size: 11px; color: var(--muted); }
+    .kpi .v{ font-size: 18px; font-weight: 900; margin-top: 2px; }
+    .kpi .sub{ font-size: 11px; color: rgba(159,178,204,.85); margin-top: 2px; }
+
+    .status{
+      display:flex; align-items:center; gap:10px;
+      padding: 10px 10px;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(8,18,32,.40);
+      margin-top: 10px;
+    }
+    .status .bubble{
+      width: 42px; height: 42px; border-radius: 14px;
+      display:flex; align-items:center; justify-content:center;
+      font-weight: 1000;
+      border:1px solid rgba(255,255,255,.10);
+    }
+    .status.ok .bubble{ background: rgba(34,197,94,.16); color: var(--good); }
+    .status.warn .bubble{ background: rgba(245,158,11,.16); color: var(--warn); }
+    .status.bad .bubble{ background: rgba(239,68,68,.16); color: var(--bad); }
+    .status .txt{ display:flex; flex-direction:column; gap:2px; }
+    .status .txt .a{ font-weight: 900; font-size: 13px; }
+    .status .txt .b{ color: var(--muted); font-size: 12px; line-height:1.25; }
+
+    /* Modal sheet */
+    .modal{
+      position: fixed;
+      inset:0;
+      background: rgba(0,0,0,.55);
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      padding: 12px;
+      z-index: 200;
+    }
+    .modal.open{ display:flex; }
+    .sheet{
+      width: 100%;
+      max-width: 430px;
+      border-radius: 22px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(12,22,42,.92);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+      overflow:hidden;
+    }
+    .sheet .shhead{
+      padding: 12px 12px 10px;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .sheet .shhead .t{
+      font-weight: 1000;
+      font-size: 14px;
+      display:flex; flex-direction:column; gap:2px;
+    }
+    .sheet .shhead .t span{ font-size: 12px; color: var(--muted); font-weight: 700; }
+    .xbtn{
+      width: 40px; height: 40px;
+      border-radius: 14px;
+      display:flex; align-items:center; justify-content:center;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      cursor:pointer;
+      font-weight: 1000;
+    }
+    .sheet .shbody{ padding: 12px; }
+    .toggles{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top: 10px;
+    }
+    .toggle{
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(8,18,32,.40);
+      border-radius: 16px;
+      padding: 10px 8px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      cursor:pointer;
+      user-select:none;
+    }
+    .toggle .name{
+      font-weight: 900;
+      font-size: 12px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .sw{
+      width: 44px; height: 26px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.10);
+      position: relative;
+      border:1px solid rgba(255,255,255,.10);
+      flex:0 0 auto;
+    }
+    .sw::after{
+      content:"";
+      position:absolute;
+      top:3px; left:3px;
+      width: 20px; height:20px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.82);
+      transition: transform .18s ease;
+    }
+    .toggle.on .sw{ background: rgba(34,197,94,.20); border-color: rgba(34,197,94,.35); }
+    .toggle.on .sw::after{ transform: translateX(18px); background: rgba(34,197,94,.95); }
+
+    .note{
+      margin-top: 10px;
+      padding: 10px 10px;
+      border-radius: 16px;
+      border: 1px dashed rgba(255,255,255,.16);
+      color: rgba(159,178,204,.95);
+      font-size: 12px;
+      line-height: 1.35;
+      background: rgba(8,18,32,.35);
+    }
+
+    /* SVG chart */
+    .chartwrap{
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(8,18,32,.35);
+      border-radius: 18px;
+      padding: 10px;
+      overflow:hidden;
+    }
+    .legend{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .leg{
+      display:flex; align-items:center; gap:6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+    }
+    .leg .line{
+      width: 18px; height: 4px; border-radius: 999px;
+      background: var(--w);
+    }
+    .leg.proj .line{ background: var(--accent); }
+
+    .footerhint{
+      margin-top: 10px;
+      color: rgba(159,178,204,.85);
+      font-size: 11px;
+      line-height:1.35;
+      text-align:center;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+    <div class="topbar">
+      <div class="row">
+        <div class="brand">
+          <div class="t">Progressi Peso • 2026</div>
+          <div class="s" id="subtitle">Profilo + calendario + dashboard</div>
+        </div>
+        <div class="pill" id="todayPill"><span class="dot"></span><span id="todayTxt">Oggi</span></div>
+      </div>
+      <div class="tabs">
+        <div class="tab active" data-tab="dash">Dashboard</div>
+        <div class="tab" data-tab="cal">Calendario</div>
+        <div class="tab" data-tab="set">Impostazioni</div>
+      </div>
+    </div>
+
+    <div class="grid" id="viewDash">
+      <div class="card weight">
+        <div class="head">
+          <div class="title">📈 Percorso peso</div>
+          <div class="badge" id="lastWeightBadge">Nessun dato</div>
+        </div>
+        <div class="body">
+          <div class="chartwrap">
+            <svg id="weightSvg" viewBox="0 0 340 180" width="100%" height="180" aria-label="Grafico peso 2026"></svg>
+            <div class="legend">
+              <div class="leg"><span class="line"></span>Reale (fine mese)</div>
+              <div class="leg proj"><span class="line"></span>Proiezione obiettivo</div>
+            </div>
+          </div>
+
+          <div class="kpis">
+            <div class="kpi">
+              <div class="l">Peso iniziale</div>
+              <div class="v" id="kpiStart">—</div>
+              <div class="sub" id="kpiStartSub">imposta nelle impostazioni</div>
+            </div>
+            <div class="kpi">
+              <div class="l">Obiettivo</div>
+              <div class="v" id="kpiTarget">—</div>
+              <div class="sub" id="kpiTargetSub">entro il 31/12/2026</div>
+            </div>
+            <div class="kpi">
+              <div class="l">Reale (ultimo)</div>
+              <div class="v" id="kpiLast">—</div>
+              <div class="sub" id="kpiLastSub">nessun inserimento</div>
+            </div>
+            <div class="kpi">
+              <div class="l">Scarto vs atteso</div>
+              <div class="v" id="kpiDelta">—</div>
+              <div class="sub" id="kpiDeltaSub">calcolato su oggi</div>
+            </div>
+          </div>
+
+          <div class="status warn" id="progressStatus">
+            <div class="bubble" id="statusIcon">≈</div>
+            <div class="txt">
+              <div class="a" id="statusTitle">Imposta profilo e obiettivo</div>
+              <div class="b" id="statusText">Inserisci peso iniziale e peso obiettivo: ti calcolo la perdita media mensile e il confronto reale vs proiezione.</div>
+            </div>
+          </div>
+
+          <div class="footerhint">Tip: inserisci il peso a fine mese (giorni evidenziati). Puoi comunque inserire anche in altri giorni.</div>
+        </div>
+      </div>
+
+      <div class="card workout">
+        <div class="head">
+          <div class="title">🏋️‍♂️ Allenamenti</div>
+          <div class="badge">
+            <select id="workoutPeriod" style="border:none;background:transparent;color:inherit;padding:0;font-weight:900;">
+              <option value="month">Mese</option>
+              <option value="quarter">Trimestre</option>
+              <option value="semester">Semestre</option>
+              <option value="year">Anno</option>
+            </select>
+          </div>
+        </div>
+        <div class="body">
+          <div class="two">
+            <div class="kpi">
+              <div class="l">Totale</div>
+              <div class="v" id="wTotal">0</div>
+              <div class="sub" id="wLabel">nel periodo</div>
+            </div>
+            <div class="kpi">
+              <div class="l">Distribuzione</div>
+              <div class="v" id="wMix">—</div>
+              <div class="sub">palestra / calcio / piscina</div>
+            </div>
+          </div>
+
+          <div class="kpis">
+            <div class="kpi"><div class="l">Palestra</div><div class="v" id="wGym">0</div><div class="sub">sessioni</div></div>
+            <div class="kpi"><div class="l">Calcio</div><div class="v" id="wSoccer">0</div><div class="sub">sessioni</div></div>
+            <div class="kpi"><div class="l">Piscina</div><div class="v" id="wPool">0</div><div class="sub">sessioni</div></div>
+            <div class="kpi"><div class="l">Giorni attivi</div><div class="v" id="wDays">0</div><div class="sub">almeno 1 attività</div></div>
+          </div>
+
+          <div class="mini" id="wPeriodHint" style="margin-top:10px;">Periodo: mese selezionato nel calendario.</div>
+        </div>
+      </div>
+
+      <div class="card food">
+        <div class="head">
+          <div class="title">🍽️ Alimentazione</div>
+          <div class="badge">
+            <select id="foodPeriod" style="border:none;background:transparent;color:inherit;padding:0;font-weight:900;">
+              <option value="month">Mese</option>
+              <option value="quarter">Trimestre</option>
+              <option value="semester">Semestre</option>
+              <option value="year">Anno</option>
+            </select>
+          </div>
+        </div>
+        <div class="body">
+          <div class="kpis" id="foodKpis"></div>
+          <div class="mini" id="foodPeriodHint" style="margin-top:10px;">Periodo: mese selezionato nel calendario.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" id="viewCal" style="display:none;">
+      <div class="card calendar">
+        <div class="head">
+          <div class="title">📅 Calendario 2026</div>
+          <div class="badge" id="selectedDayBadge">Seleziona un giorno</div>
+        </div>
+        <div class="body">
+          <div class="calbar">
+            <select id="monthSel"></select>
+            <button class="btn primary" id="openDayBtn" style="flex:0 0 auto; width:auto; padding:10px 12px;">✍️ Inserisci</button>
+          </div>
+          <div class="calhint">Legenda: ● peso inserito • ● allenamento • ● dieta. Fine mese evidenziato.</div>
+
+          <div class="dow">
+            <div>Lun</div><div>Mar</div><div>Mer</div><div>Gio</div><div>Ven</div><div>Sab</div><div>Dom</div>
+          </div>
+          <div class="calgrid" id="calgrid"></div>
+        </div>
+      </div>
+
+      <div class="card profile">
+        <div class="head">
+          <div class="title">👤 Riepilogo rapido</div>
+          <div class="badge" id="profileBadge">—</div>
+        </div>
+        <div class="body">
+          <div class="mini" id="profileMini">Compila il profilo nelle impostazioni. I dati si salvano automaticamente in locale.</div>
+          <div class="btnrow" style="margin-top:10px;">
+            <button class="btn" id="jumpToSettings">⚙️ Vai a Impostazioni</button>
+            <button class="btn" id="jumpToDash">📊 Vai a Dashboard</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" id="viewSet" style="display:none;">
+      <div class="card profile">
+        <div class="head">
+          <div class="title">⚙️ Profilo</div>
+          <div class="badge">salvataggio automatico</div>
+        </div>
+        <div class="body">
+          <div class="field">
+            <label>Nome</label>
+            <input id="name" type="text" placeholder="Es. Mario" />
+          </div>
+
+          <div class="two" style="margin-top:10px;">
+            <div class="field">
+              <label>Età</label>
+              <input id="age" type="number" min="1" max="120" placeholder="40" />
+            </div>
+            <div class="field">
+              <label>Altezza (cm)</label>
+              <input id="height" type="number" min="50" max="250" placeholder="170" />
+            </div>
+          </div>
+
+          <div class="two" style="margin-top:10px;">
+            <div class="field">
+              <label>Peso iniziale (kg)</label>
+              <input id="startWeight" type="number" step="0.1" placeholder="124" />
+            </div>
+            <div class="field">
+              <label>Circonferenza iniziale (cm)</label>
+              <input id="startCirc" type="number" step="0.1" placeholder="Es. 120" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card goal">
+        <div class="head">
+          <div class="title">🎯 Obiettivo</div>
+          <div class="badge" id="goalBadge">entro 31/12/2026</div>
+        </div>
+        <div class="body">
+          <div class="two">
+            <div class="field">
+              <label>Peso obiettivo (kg)</label>
+              <input id="targetWeight" type="number" step="0.1" placeholder="Es. 95" />
+            </div>
+            <div class="field">
+              <label>Data obiettivo</label>
+              <input id="targetDate" type="date" />
+            </div>
+          </div>
+
+          <div class="note" id="projectionNote">
+            Imposta peso iniziale e peso obiettivo: calcolo la perdita media mensile necessaria e il confronto reale vs proiezione.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="head">
+          <div class="title">💾 Dati</div>
+          <div class="badge" id="storageBadge">localStorage</div>
+        </div>
+        <div class="body">
+          <div class="btnrow">
+            <button class="btn" id="exportBtn">⬇️ Export JSON</button>
+            <button class="btn" id="importBtn">⬆️ Import JSON</button>
+          </div>
+          <div class="btnrow" style="margin-top:10px;">
+            <button class="btn danger" id="resetBtn">🧨 Reset completo</button>
+          </div>
+          <div class="mini" style="margin-top:10px;">
+            Nota: i dati sono salvati in locale sul dispositivo. Con Export/Import puoi trasferirli su un altro telefono.
+          </div>
+          <input id="filePicker" type="file" accept="application/json" style="display:none;" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal / Bottom sheet per inserimento giorno -->
+  <div class="modal" id="modal">
+    <div class="sheet">
+      <div class="shhead">
+        <div class="t" id="sheetTitle">Giorno
+          <span id="sheetSub">—</span>
+        </div>
+        <div class="xbtn" id="closeModal">✕</div>
+      </div>
+
+      <div class="shbody">
+        <div class="two">
+          <div class="field">
+            <label>Peso (kg)</label>
+            <input id="dayWeight" type="number" step="0.1" placeholder="Es. 121.4" />
+          </div>
+          <div class="field">
+            <label>Circonferenza (cm)</label>
+            <input id="dayCirc" type="number" step="0.1" placeholder="Es. 118.0" />
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:10px;">
+          <label>Alimentazione</label>
+          <select id="dayDiet">
+            <option value="">— (nessuna)</option>
+            <option value="Digiuno intermittente (cena)">Digiuno intermittente (cena)</option>
+            <option value="Digiuno intermittente (pranzo)">Digiuno intermittente (pranzo)</option>
+            <option value="Digiuno intermittente (colazione)">Digiuno intermittente (colazione)</option>
+            <option value="Digiuno totale">Digiuno totale</option>
+          </select>
+        </div>
+
+        <div class="toggles" style="margin-top:10px;">
+          <div class="toggle" data-toggle="gym" id="tGym">
+            <div class="name"><span class="tag" style="background:var(--g)"></span>Palestra</div>
+            <div class="sw"></div>
+          </div>
+          <div class="toggle" data-toggle="soccer" id="tSoccer">
+            <div class="name"><span class="tag" style="background:var(--s)"></span>Calcio</div>
+            <div class="sw"></div>
+          </div>
+          <div class="toggle" data-toggle="pool" id="tPool">
+            <div class="name"><span class="tag" style="background:var(--p)"></span>Piscina</div>
+            <div class="sw"></div>
+          </div>
+        </div>
+
+        <div class="btnrow" style="margin-top:12px;">
+          <button class="btn primary" id="saveDay">✅ Salva</button>
+          <button class="btn" id="clearDay">🧽 Svuota giorno</button>
+        </div>
+
+        <div class="mini" style="margin-top:10px;">
+          Questo editor salva: peso, circonferenza, alimentazione e flag allenamento per il giorno selezionato.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const LS_KEY = "weight_tracker_2026_v1";
+      const YEAR = 2026;
+
+      const $ = (id)=>document.getElementById(id);
+      const tabs = [...document.querySelectorAll(".tab")];
+      const views = {
+        dash: $("viewDash"),
+        cal: $("viewCal"),
+        set: $("viewSet"),
+      };
+
+      // State
+      const state = {
+        profile: { name:"", age:"", heightCm:"", startWeightKg:"", startCircCm:"" },
+        goal: { targetWeightKg:"", targetDate: `${YEAR}-12-31` },
+        entries: {
+          // "2026-01-31": { weightKg: 121.4, circCm: 118, diet:"...", workouts:{gym:true,soccer:false,pool:true} }
+        },
+        ui: { month: 0, selectedDate: null }
+      };
+
+      // Utils
+      const pad = (n)=> String(n).padStart(2,"0");
+      const iso = (y,m,d)=> `${y}-${pad(m+1)}-${pad(d)}`; // m: 0..11
+      const itDate = (isoStr)=>{
+        const [y,m,d] = isoStr.split("-").map(Number);
+        return `${pad(d)}/${pad(m)}/${y}`;
+      };
+      const clamp = (v,min,max)=> Math.max(min, Math.min(max, v));
+      const round1 = (n)=> Math.round(n*10)/10;
+      const parseNum = (v)=> {
+        const n = Number(String(v).replace(",", "."));
+        return Number.isFinite(n) ? n : null;
+      };
+
+      const monthNames = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
+      const dowNames = ["Lun","Mar","Mer","Gio","Ven","Sab","Dom"];
+
+      function saveLS(){
+        localStorage.setItem(LS_KEY, JSON.stringify(state));
+      }
+      function loadLS(){
+        const raw = localStorage.getItem(LS_KEY);
+        if(!raw) return;
+        try{
+          const obj = JSON.parse(raw);
+          if(obj && typeof obj === "object"){
+            if(obj.profile) state.profile = { ...state.profile, ...obj.profile };
+            if(obj.goal) state.goal = { ...state.goal, ...obj.goal };
+            if(obj.entries) state.entries = obj.entries;
+            if(obj.ui) state.ui = { ...state.ui, ...obj.ui };
+          }
+        }catch(e){}
+      }
+
+      // Calendar generation (Monday-first)
+      function jsDowMondayFirst(date){
+        // JS: 0=Sun..6=Sat; want 0=Mon..6=Sun
+        const d = date.getDay();
+        return (d + 6) % 7;
+      }
+      function daysInMonth(y,m){
+        return new Date(y, m+1, 0).getDate();
+      }
+
+      function isMonthEnd(y,m,d){
+        return d === daysInMonth(y,m);
+      }
+
+      function entryHasAny(e){
+        if(!e) return false;
+        const w = parseNum(e.weightKg);
+        const c = parseNum(e.circCm);
+        const diet = (e.diet || "").trim();
+        const wo = e.workouts || {};
+        const anyWo = !!(wo.gym || wo.soccer || wo.pool);
+        return (w !== null) || (c !== null) || !!diet || anyWo;
+      }
+
+      function renderCalendar(){
+        const m = state.ui.month;
+        const grid = $("calgrid");
+        grid.innerHTML = "";
+
+        // month selector label already managed elsewhere
+        const first = new Date(YEAR, m, 1);
+        const offset = jsDowMondayFirst(first); // 0..6
+        const dim = daysInMonth(YEAR, m);
+
+        // empty cells
+        for(let i=0;i<offset;i++){
+          const cell = document.createElement("div");
+          cell.className = "day empty";
+          grid.appendChild(cell);
+        }
+
+        for(let d=1; d<=dim; d++){
+          const dateIso = iso(YEAR,m,d);
+          const e = state.entries[dateIso];
+          const cell = document.createElement("div");
+          const monthEnd = isMonthEnd(YEAR,m,d);
+
+          cell.className = "day" + (monthEnd ? " monthend" : "");
+          if(state.ui.selectedDate === dateIso) cell.classList.add("sel");
+
+          const n = document.createElement("div");
+          n.className = "n";
+          n.textContent = d;
+
+          const mrow = document.createElement("div");
+          mrow.className = "m";
+
+          // indicators
+          if(e && entryHasAny(e)){
+            const hasW = parseNum(e.weightKg) !== null;
+            const wo = e.workouts || {};
+            const hasWo = !!(wo.gym || wo.soccer || wo.pool);
+            const hasDiet = !!(e.diet && e.diet.trim());
+            if(hasW){
+              const t = document.createElement("span"); t.className="tag"; t.style.background="var(--w)"; mrow.appendChild(t);
+            }
+            if(hasWo){
+              const t = document.createElement("span"); t.className="tag"; t.style.background="var(--g)"; mrow.appendChild(t);
+            }
+            if(hasDiet){
+              const t = document.createElement("span"); t.className="tag"; t.style.background="var(--d)"; mrow.appendChild(t);
+            }
+          } else {
+            // subtle dot if empty? skip
+          }
+
+          cell.appendChild(n);
+          cell.appendChild(mrow);
+
+          cell.addEventListener("click", ()=>{
+            selectDate(dateIso, true);
+          });
+
+          grid.appendChild(cell);
+        }
+      }
+
+      function selectDate(dateIso, openModal=false){
+        state.ui.selectedDate = dateIso;
+        saveLS();
+        $("selectedDayBadge").textContent = itDate(dateIso);
+        renderCalendar();
+        if(openModal) openDayEditor();
+        refreshAll();
+      }
+
+      // Day editor
+      function openDayEditor(){
+        const dateIso = state.ui.selectedDate;
+        if(!dateIso){
+          // default: first day of selected month
+          selectDate(iso(YEAR, state.ui.month, 1), false);
+        }
+        const dIso = state.ui.selectedDate;
+        const e = state.entries[dIso] || { weightKg:"", circCm:"", diet:"", workouts:{gym:false,soccer:false,pool:false} };
+        // normalize
+        e.workouts = e.workouts || {gym:false,soccer:false,pool:false};
+
+        $("sheetTitle").childNodes[0].textContent = "Giorno";
+        $("sheetSub").textContent = itDate(dIso) + " • " + monthNames[state.ui.month] + " " + YEAR;
+
+        $("dayWeight").value = (e.weightKg ?? "");
+        $("dayCirc").value = (e.circCm ?? "");
+        $("dayDiet").value = (e.diet ?? "");
+
+        setToggleUI("gym", !!e.workouts.gym);
+        setToggleUI("soccer", !!e.workouts.soccer);
+        setToggleUI("pool", !!e.workouts.pool);
+
+        $("modal").classList.add("open");
+      }
+
+      function closeDayEditor(){
+        $("modal").classList.remove("open");
+      }
+
+      function setToggleUI(kind, on){
+        const map = { gym:"tGym", soccer:"tSoccer", pool:"tPool" };
+        const el = $(map[kind]);
+        if(!el) return;
+        el.classList.toggle("on", !!on);
+      }
+
+      function getToggleUI(kind){
+        const map = { gym:"tGym", soccer:"tSoccer", pool:"tPool" };
+        const el = $(map[kind]);
+        return el && el.classList.contains("on");
+      }
+
+      // Stats
+      function monthRange(monthIndex){
+        const start = new Date(YEAR, monthIndex, 1);
+        const end = new Date(YEAR, monthIndex+1, 0);
+        return { start, end };
+      }
+
+      function rangeFor(period){
+        const m = state.ui.month;
+        if(period === "month"){
+          const r = monthRange(m);
+          return { start: r.start, end: r.end, label: `${monthNames[m]} ${YEAR}` };
+        }
+        if(period === "quarter"){
+          const q = Math.floor(m/3); // 0..3
+          const m0 = q*3;
+          const start = new Date(YEAR, m0, 1);
+          const end = new Date(YEAR, m0+3, 0);
+          return { start, end, label: `Q${q+1} ${YEAR} (${monthNames[m0]}–${monthNames[m0+2]})` };
+        }
+        if(period === "semester"){
+          const s = (m<6) ? 0 : 1;
+          const m0 = s*6;
+          const start = new Date(YEAR, m0, 1);
+          const end = new Date(YEAR, m0+6, 0);
+          return { start, end, label: `S${s+1} ${YEAR} (${monthNames[m0]}–${monthNames[m0+5]})` };
+        }
+        // year
+        return { start: new Date(YEAR,0,1), end: new Date(YEAR,11,31), label: `${YEAR}` };
+      }
+
+      function iterateEntriesInRange(startDate, endDate, fn){
+        // inclusive
+        const startIso = iso(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+        const endIso = iso(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+        const keys = Object.keys(state.entries).filter(k => k >= startIso && k <= endIso).sort();
+        keys.forEach(k => fn(k, state.entries[k]));
+      }
+
+      function computeWorkouts(period){
+        const r = rangeFor(period);
+        let gym=0, soccer=0, pool=0;
+        const activeDays = new Set();
+
+        iterateEntriesInRange(r.start, r.end, (k,e)=>{
+          const w = (e.workouts || {});
+          const any = !!(w.gym || w.soccer || w.pool);
+          if(any) activeDays.add(k);
+          if(w.gym) gym++;
+          if(w.soccer) soccer++;
+          if(w.pool) pool++;
+        });
+
+        const total = gym + soccer + pool;
+        return { ...r, gym, soccer, pool, total, days: activeDays.size };
+      }
+
+      function computeFood(period){
+        const r = rangeFor(period);
+        const counts = {
+          "Digiuno intermittente (cena)": 0,
+          "Digiuno intermittente (pranzo)": 0,
+          "Digiuno intermittente (colazione)": 0,
+          "Digiuno totale": 0
+        };
+        let none = 0;
+
+        iterateEntriesInRange(r.start, r.end, (k,e)=>{
+          const d = (e.diet || "").trim();
+          if(!d) { none++; return; }
+          if(counts[d] === undefined) counts[d] = 0;
+          counts[d]++;
+        });
+
+        const total = Object.values(counts).reduce((a,b)=>a+b,0);
+        return { ...r, counts, none, totalLogged: total, totalDaysWithAny: total + none };
+      }
+
+      // Weight: use "fine mese" = last day in month with weight
+      function monthEndWeights(){
+        const arr = new Array(12).fill(null);
+        for(let m=0; m<12; m++){
+          const dim = daysInMonth(YEAR, m);
+          // find last entry in month that has weight
+          let found = null;
+          for(let d=dim; d>=1; d--){
+            const k = iso(YEAR,m,d);
+            const e = state.entries[k];
+            if(e){
+              const w = parseNum(e.weightKg);
+              if(w !== null){
+                found = w;
+                break;
+              }
+            }
+          }
+          arr[m] = found;
+        }
+        return arr;
+      }
+
+      function lastKnownWeight(){
+        const keys = Object.keys(state.entries).sort();
+        for(let i=keys.length-1; i>=0; i--){
+          const e = state.entries[keys[i]];
+          const w = e ? parseNum(e.weightKg) : null;
+          if(w !== null) return { date: keys[i], weight: w };
+        }
+        return null;
+      }
+
+      function expectedWeightOn(dateObj){
+        const sw = parseNum(state.profile.startWeightKg);
+        const tw = parseNum(state.goal.targetWeightKg);
+        const td = state.goal.targetDate ? new Date(state.goal.targetDate+"T00:00:00") : new Date(`${YEAR}-12-31T00:00:00`);
+        if(sw === null || tw === null) return null;
+
+        const start = new Date(`${YEAR}-01-01T00:00:00`);
+        const cur = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+        // if user starts later, still project from Jan 1 (bozza). In versione 2 possiamo aggiungere data inizio.
+        const totalDays = (td - start) / 86400000;
+        if(totalDays <= 0) return tw;
+
+        const curDays = (cur - start) / 86400000;
+        const t = clamp(curDays / totalDays, 0, 1);
+        return sw + (tw - sw) * t;
+      }
+
+      function requiredMonthlyLoss(){
+        const sw = parseNum(state.profile.startWeightKg);
+        const tw = parseNum(state.goal.targetWeightKg);
+        const td = state.goal.targetDate ? new Date(state.goal.targetDate+"T00:00:00") : new Date(`${YEAR}-12-31T00:00:00`);
+        if(sw === null || tw === null) return null;
+
+        const start = new Date(`${YEAR}-01-01T00:00:00`);
+        let months = (td.getFullYear()-start.getFullYear())*12 + (td.getMonth()-start.getMonth()) + 1; // inclusive
+        months = clamp(months, 1, 24);
+        const diff = sw - tw; // positive if need to lose
+        return diff / months;
+      }
+
+      // SVG chart
+      function renderWeightChart(){
+        const svg = $("weightSvg");
+        svg.innerHTML = "";
+
+        const wArr = monthEndWeights();
+        const sw = parseNum(state.profile.startWeightKg);
+        const tw = parseNum(state.goal.targetWeightKg);
+
+        // Build projected monthly points if possible
+        const proj = new Array(12).fill(null);
+        if(sw !== null && tw !== null){
+          for(let m=0; m<12; m++){
+            const t = (m) / 11; // Jan..Dec
+            proj[m] = sw + (tw - sw) * t;
+          }
+        }
+
+        // Determine min/max
+        const vals = [];
+        wArr.forEach(v=> { if(v !== null) vals.push(v); });
+        proj.forEach(v=> { if(v !== null) vals.push(v); });
+
+        // fallback range
+        let vmin = 60, vmax = 140;
+        if(vals.length){
+          vmin = Math.min(...vals);
+          vmax = Math.max(...vals);
+          const padv = Math.max(2, (vmax - vmin) * 0.12);
+          vmin -= padv; vmax += padv;
+        }
+        if(vmax - vmin < 5){ vmax += 3; vmin -= 2; }
+
+        const W = 340, H = 180;
+        const padX = 18, padY = 16;
+        const plotW = W - padX*2;
+        const plotH = H - padY*2;
+
+        const x = (i)=> padX + (plotW * (i/11));
+        const y = (v)=> padY + (plotH * (1 - ((v - vmin) / (vmax - vmin))));
+
+        // grid lines (3)
+        for(let i=0;i<3;i++){
+          const yy = padY + (plotH*(i/2));
+          const line = document.createElementNS("http://www.w3.org/2000/svg","line");
+          line.setAttribute("x1","0"); line.setAttribute("x2",W);
+          line.setAttribute("y1",yy); line.setAttribute("y2",yy);
+          line.setAttribute("stroke","rgba(255,255,255,.08)");
+          line.setAttribute("stroke-width","1");
+          svg.appendChild(line);
+        }
+
+        // y labels (min/max)
+        const mkText = (tx,ty,txt,op=1)=>{
+          const t = document.createElementNS("http://www.w3.org/2000/svg","text");
+          t.setAttribute("x", tx);
+          t.setAttribute("y", ty);
+          t.setAttribute("fill", `rgba(159,178,204,${op})`);
+          t.setAttribute("font-size", "11");
+          t.setAttribute("font-weight","800");
+          t.textContent = txt;
+          return t;
+        };
+        svg.appendChild(mkText(8, 14, `${round1(vmax)} kg`, .9));
+        svg.appendChild(mkText(8, H-6, `${round1(vmin)} kg`, .7));
+
+        function polyline(points, stroke, dashed=false){
+          const pl = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          pl.setAttribute("fill","none");
+          pl.setAttribute("stroke", stroke);
+          pl.setAttribute("stroke-width","3");
+          pl.setAttribute("stroke-linecap","round");
+          pl.setAttribute("stroke-linejoin","round");
+          if(dashed) pl.setAttribute("stroke-dasharray","6 6");
+          pl.setAttribute("points", points.map(p=> `${p[0]},${p[1]}`).join(" "));
+          return pl;
+        }
+
+        // projected line
+        if(proj.some(v=>v!==null)){
+          const pts = proj.map((v,i)=> [x(i), y(v)]);
+          svg.appendChild(polyline(pts, "rgba(14,165,164,.95)", true));
+        }
+
+        // real line with gaps: draw segments for consecutive non-null
+        let seg = [];
+        for(let i=0;i<12;i++){
+          const v = wArr[i];
+          if(v === null){
+            if(seg.length >= 2){
+              svg.appendChild(polyline(seg, "rgba(96,165,250,.95)", false));
+            }
+            seg = [];
+            continue;
+          }
+          seg.push([x(i), y(v)]);
+        }
+        if(seg.length >= 2){
+          svg.appendChild(polyline(seg, "rgba(96,165,250,.95)", false));
+        }
+
+        // points for real weights
+        wArr.forEach((v,i)=>{
+          if(v === null) return;
+          const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
+          c.setAttribute("cx", x(i));
+          c.setAttribute("cy", y(v));
+          c.setAttribute("r","4.2");
+          c.setAttribute("fill","rgba(96,165,250,1)");
+          c.setAttribute("stroke","rgba(255,255,255,.18)");
+          c.setAttribute("stroke-width","1");
+          svg.appendChild(c);
+        });
+
+        // month ticks (Jan, Apr, Jul, Oct, Dec)
+        const tickIdx = [0,3,6,9,11];
+        tickIdx.forEach(i=>{
+          const t = document.createElementNS("http://www.w3.org/2000/svg","text");
+          t.setAttribute("x", x(i));
+          t.setAttribute("y", H-6);
+          t.setAttribute("fill", "rgba(159,178,204,.85)");
+          t.setAttribute("font-size","10");
+          t.setAttribute("font-weight","900");
+          t.setAttribute("text-anchor","middle");
+          t.textContent = ["Gen","Apr","Lug","Ott","Dic"][tickIdx.indexOf(i)];
+          svg.appendChild(t);
+        });
+      }
+
+      function refreshProfileUI(){
+        const name = (state.profile.name || "").trim();
+        const age = (state.profile.age || "").toString().trim();
+        const h = (state.profile.heightCm || "").toString().trim();
+
+        const sub = [];
+        if(name) sub.push(name);
+        if(age) sub.push(`${age} anni`);
+        if(h) sub.push(`${h} cm`);
+
+        $("subtitle").textContent = sub.length ? sub.join(" • ") : "Profilo + calendario + dashboard";
+
+        $("profileBadge").textContent = name ? name : "Profilo non impostato";
+        $("profileMini").textContent = sub.length
+          ? `Profilo: ${sub.join(" • ")}`
+          : "Compila il profilo nelle impostazioni. I dati si salvano automaticamente in locale.";
+
+        const sw = parseNum(state.profile.startWeightKg);
+        const tw = parseNum(state.goal.targetWeightKg);
+
+        $("kpiStart").textContent = (sw !== null) ? `${round1(sw)} kg` : "—";
+        $("kpiStartSub").textContent = (sw !== null) ? "valore iniziale" : "imposta nelle impostazioni";
+
+        $("kpiTarget").textContent = (tw !== null) ? `${round1(tw)} kg` : "—";
+        $("kpiTargetSub").textContent = state.goal.targetDate ? `entro ${itDate(state.goal.targetDate)}` : `entro 31/12/${YEAR}`;
+
+        // Goal badge
+        $("goalBadge").textContent = state.goal.targetDate ? `entro ${itDate(state.goal.targetDate)}` : `entro 31/12/${YEAR}`;
+
+        // Projection note
+        const req = requiredMonthlyLoss();
+        if(req === null){
+          $("projectionNote").textContent = "Imposta peso iniziale e peso obiettivo: calcolo la perdita media mensile necessaria e il confronto reale vs proiezione.";
+        } else {
+          const dir = req >= 0 ? "perdere" : "aumentare";
+          $("projectionNote").textContent = `Per ${dir} da ${round1(sw)} kg a ${round1(tw)} kg entro ${$("goalBadge").textContent.replace("entro ","")}, media necessaria: ${round1(Math.abs(req))} kg/mese.`;
+        }
+      }
+
+      function refreshGoalAndProgress(){
+        const last = lastKnownWeight();
+        const sw = parseNum(state.profile.startWeightKg);
+        const tw = parseNum(state.goal.targetWeightKg);
+
+        if(last){
+          $("lastWeightBadge").textContent = `${round1(last.weight)} kg • ${itDate(last.date)}`;
+          $("kpiLast").textContent = `${round1(last.weight)} kg`;
+          $("kpiLastSub").textContent = `ultimo: ${itDate(last.date)}`;
+        } else {
+          $("lastWeightBadge").textContent = "Nessun dato";
+          $("kpiLast").textContent = "—";
+          $("kpiLastSub").textContent = "nessun inserimento";
+        }
+
+        const today = new Date();
+        $("todayTxt").textContent = `Oggi • ${pad(today.getDate())}/${pad(today.getMonth()+1)}/${today.getFullYear()}`;
+
+        // expected on today
+        let expected = null;
+        if(sw !== null && tw !== null){
+          expected = expectedWeightOn(today);
+        }
+
+        if(expected === null || !last){
+          $("kpiDelta").textContent = "—";
+          $("kpiDeltaSub").textContent = "serve obiettivo + peso reale";
+          $("progressStatus").className = "status warn";
+          $("statusIcon").textContent = "≈";
+          $("statusTitle").textContent = "Imposta profilo e obiettivo";
+          $("statusText").textContent = "Inserisci peso iniziale, obiettivo e almeno una misurazione: ti dico se sei in linea con la proiezione.";
+          return;
+        }
+
+        const delta = last.weight - expected; // positive = sopra (peggio se devi scendere)
+        const absd = Math.abs(delta);
+        const sign = delta > 0 ? "+" : "−";
+        $("kpiDelta").textContent = `${sign}${round1(absd)} kg`;
+        $("kpiDeltaSub").textContent = `atteso oggi: ${round1(expected)} kg`;
+
+        // Determine status
+        // se devi dimagrire (sw > tw), delta>0 => sei sopra l'atteso (in ritardo)
+        const needLose = (sw > tw);
+        let cls="warn", ico="≈", title="Quasi in linea", text="";
+
+        const tol = 0.8; // tolleranza bozza
+        if(needLose){
+          if(delta <= tol){ cls="ok"; ico="✓"; title="In linea"; text = `Sei a ${round1(last.weight)} kg, proiezione ${round1(expected)} kg: buon ritmo.`; }
+          else if(delta <= 2.5){ cls="warn"; ico="!"; title="Leggermente sopra"; text = `Sei sopra la proiezione di ${round1(delta)} kg. Piccole correzioni su alimentazione/attività e rientri.`; }
+          else { cls="bad"; ico="↗"; title="Fuori linea"; text = `Sei sopra la proiezione di ${round1(delta)} kg. Serve aumentare costanza (allenamenti) e/o ricalibrare obiettivo.`; }
+        } else {
+          // caso aumento peso
+          if(delta >= -tol){ cls="ok"; ico="✓"; title="In linea"; text = `Sei a ${round1(last.weight)} kg, proiezione ${round1(expected)} kg: buon ritmo.`; }
+          else if(delta >= -2.5){ cls="warn"; ico="!"; title="Leggermente sotto"; text = `Sei sotto la proiezione di ${round1(absd)} kg.`; }
+          else { cls="bad"; ico="↘"; title="Fuori linea"; text = `Sei sotto la proiezione di ${round1(absd)} kg.`; }
+        }
+
+        $("progressStatus").className = "status " + cls;
+        $("statusIcon").textContent = ico;
+        $("statusTitle").textContent = title;
+        $("statusText").textContent = text;
+      }
+
+      function refreshWorkoutCards(){
+        const period = $("workoutPeriod").value;
+        const r = computeWorkouts(period);
+
+        $("wTotal").textContent = r.total;
+        $("wGym").textContent = r.gym;
+        $("wSoccer").textContent = r.soccer;
+        $("wPool").textContent = r.pool;
+        $("wDays").textContent = r.days;
+        $("wLabel").textContent = r.label;
+
+        $("wMix").textContent = `${r.gym}/${r.soccer}/${r.pool}`;
+        $("wPeriodHint").textContent = `Periodo: ${r.label}. (Calcolato sui flag giornalieri)`;
+      }
+
+      function refreshFoodCards(){
+        const period = $("foodPeriod").value;
+        const r = computeFood(period);
+
+        const box = $("foodKpis");
+        box.innerHTML = "";
+
+        const add = (label, value)=>{
+          const d = document.createElement("div");
+          d.className = "kpi";
+          d.innerHTML = `<div class="l">${label}</div><div class="v">${value}</div><div class="sub">giorni</div>`;
+          box.appendChild(d);
+        };
+
+        // Most useful order
+        add("D. interm. (cena)", r.counts["Digiuno intermittente (cena)"] || 0);
+        add("D. interm. (pranzo)", r.counts["Digiuno intermittente (pranzo)"] || 0);
+        add("D. interm. (colazione)", r.counts["Digiuno intermittente (colazione)"] || 0);
+        add("Digiuno totale", r.counts["Digiuno totale"] || 0);
+
+        $("foodPeriodHint").textContent = `Periodo: ${r.label}. (Conteggio su scelta “Alimentazione” giornaliera)`;
+      }
+
+      function refreshAll(){
+        refreshProfileUI();
+        renderWeightChart();
+        refreshGoalAndProgress();
+        refreshWorkoutCards();
+        refreshFoodCards();
+      }
+
+      // Inputs binding
+      function bindSettings(){
+        // Profile
+        $("name").value = state.profile.name ?? "";
+        $("age").value = state.profile.age ?? "";
+        $("height").value = state.profile.heightCm ?? "";
+        $("startWeight").value = state.profile.startWeightKg ?? "";
+        $("startCirc").value = state.profile.startCircCm ?? "";
+
+        $("targetWeight").value = state.goal.targetWeightKg ?? "";
+        $("targetDate").value = state.goal.targetDate ?? `${YEAR}-12-31`;
+
+        const onChange = ()=>{
+          state.profile.name = $("name").value.trim();
+          state.profile.age = $("age").value;
+          state.profile.heightCm = $("height").value;
+          state.profile.startWeightKg = $("startWeight").value;
+          state.profile.startCircCm = $("startCirc").value;
+
+          state.goal.targetWeightKg = $("targetWeight").value;
+          state.goal.targetDate = $("targetDate").value || `${YEAR}-12-31`;
+
+          saveLS();
+          refreshAll();
+        };
+
+        ["name","age","height","startWeight","startCirc","targetWeight","targetDate"]
+          .forEach(id => $(id).addEventListener("input", onChange));
+      }
+
+      function bindMonthSelector(){
+        const sel = $("monthSel");
+        sel.innerHTML = "";
+        monthNames.forEach((m,i)=>{
+          const opt = document.createElement("option");
+          opt.value = String(i);
+          opt.textContent = `${m} ${YEAR}`;
+          sel.appendChild(opt);
+        });
+        sel.value = String(state.ui.month);
+        sel.addEventListener("change", ()=>{
+          state.ui.month = Number(sel.value);
+          saveLS();
+          // default selection: 1st of month
+          if(!state.ui.selectedDate || state.ui.selectedDate.slice(0,7) !== `${YEAR}-${pad(state.ui.month+1)}`){
+            state.ui.selectedDate = iso(YEAR, state.ui.month, 1);
+          }
+          saveLS();
+          renderCalendar();
+          $("selectedDayBadge").textContent = itDate(state.ui.selectedDate);
+          refreshAll();
+        });
+      }
+
+      function bindTabs(){
+        tabs.forEach(t=>{
+          t.addEventListener("click", ()=>{
+            tabs.forEach(x=>x.classList.remove("active"));
+            t.classList.add("active");
+            const tab = t.dataset.tab;
+
+            Object.keys(views).forEach(k=> views[k].style.display = (k===tab) ? "" : "none");
+            // refresh calendar view on open
+            if(tab === "cal") renderCalendar();
+            refreshAll();
+          });
+        });
+      }
+
+      function bindDayEditor(){
+        $("openDayBtn").addEventListener("click", ()=>{
+          if(!state.ui.selectedDate){
+            state.ui.selectedDate = iso(YEAR, state.ui.month, 1);
+            saveLS();
+          }
+          openDayEditor();
+        });
+        $("closeModal").addEventListener("click", closeDayEditor);
+        $("modal").addEventListener("click", (e)=>{
+          if(e.target === $("modal")) closeDayEditor();
+        });
+
+        // Toggle handlers
+        ["tGym","tSoccer","tPool"].forEach(id=>{
+          $(id).addEventListener("click", ()=>{
+            $(id).classList.toggle("on");
+          });
+        });
+
+        $("saveDay").addEventListener("click", ()=>{
+          const k = state.ui.selectedDate;
+          const e = state.entries[k] || { workouts:{gym:false,soccer:false,pool:false} };
+          e.workouts = e.workouts || {gym:false,soccer:false,pool:false};
+
+          const w = $("dayWeight").value;
+          const c = $("dayCirc").value;
+
+          e.weightKg = w ? String(w) : "";
+          e.circCm = c ? String(c) : "";
+          e.diet = $("dayDiet").value || "";
+
+          e.workouts.gym = getToggleUI("gym");
+          e.workouts.soccer = getToggleUI("soccer");
+          e.workouts.pool = getToggleUI("pool");
+
+          // If empty -> remove entry
+          if(!entryHasAny(e)){
+            delete state.entries[k];
+          } else {
+            state.entries[k] = e;
+          }
+
+          saveLS();
+          closeDayEditor();
+          renderCalendar();
+          refreshAll();
+        });
+
+        $("clearDay").addEventListener("click", ()=>{
+          const k = state.ui.selectedDate;
+          delete state.entries[k];
+          saveLS();
+          closeDayEditor();
+          renderCalendar();
+          refreshAll();
+        });
+      }
+
+      function bindQuickNav(){
+        $("jumpToSettings").addEventListener("click", ()=>{
+          tabs.find(t=>t.dataset.tab==="set").click();
+        });
+        $("jumpToDash").addEventListener("click", ()=>{
+          tabs.find(t=>t.dataset.tab==="dash").click();
+        });
+      }
+
+      function bindPeriods(){
+        $("workoutPeriod").addEventListener("change", refreshWorkoutCards);
+        $("foodPeriod").addEventListener("change", refreshFoodCards);
+      }
+
+      // Export / Import
+      function bindDataTools(){
+        $("exportBtn").addEventListener("click", ()=>{
+          const data = JSON.stringify(state, null, 2);
+          const blob = new Blob([data], {type:"application/json"});
+          const a = document.createElement("a");
+          const ts = new Date();
+          const name = (state.profile.name || "utente").replace(/\s+/g,"_").toLowerCase();
+          a.download = `progressi_peso_${YEAR}_${name}_${ts.getFullYear()}${pad(ts.getMonth()+1)}${pad(ts.getDate())}.json`;
+          a.href = URL.createObjectURL(blob);
+          a.click();
+          setTimeout(()=> URL.revokeObjectURL(a.href), 800);
+        });
+
+        $("importBtn").addEventListener("click", ()=> $("filePicker").click());
+        $("filePicker").addEventListener("change", async (e)=>{
+          const file = e.target.files && e.target.files[0];
+          if(!file) return;
+          try{
+            const txt = await file.text();
+            const obj = JSON.parse(txt);
+            if(!obj || typeof obj !== "object") throw new Error("json");
+            // minimal merge
+            if(obj.profile) state.profile = { ...state.profile, ...obj.profile };
+            if(obj.goal) state.goal = { ...state.goal, ...obj.goal };
+            if(obj.entries) state.entries = obj.entries;
+            if(obj.ui) state.ui = { ...state.ui, ...obj.ui };
+
+            // enforce year month selection and targetDate default
+            if(!state.goal.targetDate) state.goal.targetDate = `${YEAR}-12-31`;
+            if(!Number.isFinite(state.ui.month)) state.ui.month = 0;
+
+            saveLS();
+            bindSettings();
+            bindMonthSelector();
+            renderCalendar();
+            refreshAll();
+            alert("Import completato ✅");
+          }catch(err){
+            alert("File non valido. Assicurati di importare un JSON esportato dall’app.");
+          } finally {
+            e.target.value = "";
+          }
+        });
+
+        $("resetBtn").addEventListener("click", ()=>{
+          const ok = confirm("Confermi RESET completo? Verranno cancellati tutti i dati salvati sul telefono.");
+          if(!ok) return;
+          localStorage.removeItem(LS_KEY);
+          location.reload();
+        });
+      }
+
+      // Init
+      function initDefaultSelection(){
+        // If no selected date, pick today if in 2026 else first of current month in 2026
+        const now = new Date();
+        const month = (state.ui.month ?? 0);
+        if(!state.ui.selectedDate){
+          if(now.getFullYear() === YEAR){
+            state.ui.month = now.getMonth();
+            state.ui.selectedDate = iso(YEAR, now.getMonth(), now.getDate());
+          } else {
+            state.ui.month = clamp(month, 0, 11);
+            state.ui.selectedDate = iso(YEAR, state.ui.month, 1);
+          }
+          saveLS();
+        } else {
+          // keep month aligned with selected date
+          const m = Number(state.ui.selectedDate.slice(5,7)) - 1;
+          if(Number.isFinite(m)) state.ui.month = clamp(m,0,11);
+        }
+
+        $("selectedDayBadge").textContent = itDate(state.ui.selectedDate);
+      }
+
+      loadLS();
+      initDefaultSelection();
+
+      bindTabs();
+      bindSettings();
+      bindMonthSelector();
+      bindDayEditor();
+      bindQuickNav();
+      bindPeriods();
+      bindDataTools();
+
+      renderCalendar();
+      refreshAll();
+    })();
+  </script>
+</body>
+</html>
