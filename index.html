@@ -359,11 +359,23 @@
     .sheet .shbody{ padding: 12px; }
 
     .toggles{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:10px;
-      margin-top: 10px;
-    }
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top: 10px;
+}
+
+/* 2 per riga su mobile -> evita tagli (Piscina sempre visibile) */
+.toggle{
+  flex: 1 1 calc(50% - 10px);
+  min-width: 0;
+}
+
+/* su schermi un po' più larghi torna a 3 per riga */
+@media (min-width: 420px){
+  .toggle{ flex: 1 1 calc(33.333% - 10px); }
+}
+
     .toggle{
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(8,18,32,.40);
@@ -938,17 +950,42 @@
           if(e && entryHasAny(e)){
             const hasW = parseNum(e.weightKg) !== null;
             const wo = e.workouts || {};
-            const hasWo = !!(wo.gym || wo.soccer || wo.pool);
-            const hasDiet = !!(e.diet && e.diet.trim());
-            if(hasW){
-              const t = document.createElement("span"); t.className="tag"; t.style.background="var(--w)"; mrow.appendChild(t);
-            }
-            if(hasWo){
-              const t = document.createElement("span"); t.className="tag"; t.style.background="var(--g)"; mrow.appendChild(t);
-            }
-            if(hasDiet){
-              const t = document.createElement("span"); t.className="tag"; t.style.background="var(--d)"; mrow.appendChild(t);
-            }
+const hasDiet = !!(e.diet && e.diet.trim());
+
+if(hasW){
+  const t = document.createElement("span");
+  t.className="tag";
+  t.style.background="var(--w)";
+  mrow.appendChild(t);
+}
+
+/* ✅ pallini SOLO per le attività effettivamente selezionate */
+if(wo.gym){
+  const t = document.createElement("span");
+  t.className="tag";
+  t.style.background="var(--g)";
+  mrow.appendChild(t);
+}
+if(wo.soccer){
+  const t = document.createElement("span");
+  t.className="tag";
+  t.style.background="var(--s)";
+  mrow.appendChild(t);
+}
+if(wo.pool){
+  const t = document.createElement("span");
+  t.className="tag";
+  t.style.background="var(--p)";
+  mrow.appendChild(t);
+}
+
+if(hasDiet){
+  const t = document.createElement("span");
+  t.className="tag";
+  t.style.background="var(--d)";
+  mrow.appendChild(t);
+}
+
           }
 
           cell.appendChild(n);
