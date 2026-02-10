@@ -250,7 +250,6 @@
       box-shadow: 0 0 0 3px rgba(14,165,164,.18);
       background: rgba(14,165,164,.12);
     }
-    /* Multi-select highlight */
     .day.msel{
       border-color: rgba(245,158,11,.55);
       box-shadow: 0 0 0 3px rgba(245,158,11,.16);
@@ -270,7 +269,6 @@
       display:flex; align-items:center; justify-content:center;
       border-radius: 8px;
     }
-
     .day.monthend::after{
       content:"";
       position:absolute; inset:0;
@@ -358,25 +356,17 @@
     }
     .sheet .shbody{ padding: 12px; }
 
+    /* ✅ Toggles: flex-wrap, 2 per riga su mobile (Piscina sempre visibile) */
     .toggles{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top: 10px;
-}
-
-/* 2 per riga su mobile -> evita tagli (Piscina sempre visibile) */
-.toggle{
-  flex: 1 1 calc(50% - 10px);
-  min-width: 0;
-}
-
-/* su schermi un po' più larghi torna a 3 per riga */
-@media (min-width: 420px){
-  .toggle{ flex: 1 1 calc(33.333% - 10px); }
-}
-
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:10px;
+    }
     .toggle{
+      flex: 1 1 calc(50% - 10px);
+      min-width: 0;
+
       border: 1px solid rgba(255,255,255,.10);
       background: rgba(8,18,32,.40);
       border-radius: 16px;
@@ -387,6 +377,9 @@
       gap:8px;
       cursor:pointer;
       user-select:none;
+    }
+    @media (min-width: 420px){
+      .toggle{ flex: 1 1 calc(33.333% - 10px); }
     }
     .toggle .name{
       font-weight: 900;
@@ -602,7 +595,6 @@
             <button class="btn small" id="clearMultiBtn">🧹 Pulisci selezione</button>
           </div>
 
-          <!-- Batch diet apply -->
           <div class="batchbar" id="batchDietBar">
             <div class="mini" id="batchInfo">Seleziona più giorni e applica un tipo di alimentazione.</div>
             <div class="two">
@@ -624,7 +616,7 @@
             <div class="mini">Puoi sempre modificare il singolo giorno con “✍️ Inserisci”.</div>
           </div>
 
-          <div class="calhint">Legenda: ● peso inserito • ● allenamento • ● dieta. Fine mese evidenziato.</div>
+          <div class="calhint">Legenda: ● peso inserito • ● palestra/cacio/piscina • ● dieta. Fine mese evidenziato.</div>
 
           <div class="dow">
             <div>Lun</div><div>Mar</div><div>Mer</div><div>Gio</div><div>Ven</div><div>Sab</div><div>Dom</div>
@@ -728,7 +720,6 @@
         </div>
       </div>
     </div>
-
   </div>
 
   <!-- Modal / Bottom sheet -->
@@ -764,7 +755,7 @@
           </select>
         </div>
 
-        <div class="toggles" style="margin-top:10px;">
+        <div class="toggles">
           <div class="toggle" data-toggle="gym" id="tGym">
             <div class="name"><span class="tag" style="background:var(--g)"></span>Palestra</div>
             <div class="sw"></div>
@@ -804,11 +795,15 @@
         profile: { name:"", age:"", heightCm:"", startWeightKg:"", startCircCm:"" },
         goal: { targetWeightKg:"", targetDate: `${YEAR}-12-31` },
         entries: {},
+
+        // ✅ NEW: ultimo peso registrato (persistente)
+        lastWeight: { date: null, weight: null },
+
         ui: {
           month: 0,
           selectedDate: null,
           multiSel: false,
-          selectedDays: [] // array of ISO dates
+          selectedDays: []
         }
       };
 
@@ -821,7 +816,7 @@
       const clamp = (v,min,max)=> Math.max(min, Math.min(max, v));
       const round1 = (n)=> Math.round(n*10)/10;
       const parseNum = (v)=> {
-        const n = Number(String(v).replace(",", "."));
+        const n = Number(String(v ?? "").replace(",", "."));
         return Number.isFinite(n) ? n : null;
       };
 
@@ -837,8 +832,14 @@
             if(obj.profile) state.profile = { ...state.profile, ...obj.profile };
             if(obj.goal) state.goal = { ...state.goal, ...obj.goal };
             if(obj.entries) state.entries = obj.entries;
+
+            // ✅ NEW: ripristina lastWeight
+            if(obj.lastWeight) state.lastWeight = { ...state.lastWeight, ...obj.lastWeight };
+            if(!state.lastWeight || typeof state.lastWeight !== "object"){
+              state.lastWeight = { date:null, weight:null };
+            }
+
             if(obj.ui) state.ui = { ...state.ui, ...obj.ui };
-            // safety: ensure arrays/bools
             if(!Array.isArray(state.ui.selectedDays)) state.ui.selectedDays = [];
             state.ui.multiSel = !!state.ui.multiSel;
           }
@@ -901,7 +902,6 @@
         days.forEach(k=>{
           const e = state.entries[k] || { workouts:{gym:false,soccer:false,pool:false} };
           e.workouts = e.workouts || {gym:false,soccer:false,pool:false};
-
           e.diet = (dietValue || "").trim();
 
           if(!entryHasAny(e)) delete state.entries[k];
@@ -950,49 +950,47 @@
           if(e && entryHasAny(e)){
             const hasW = parseNum(e.weightKg) !== null;
             const wo = e.workouts || {};
-const hasDiet = !!(e.diet && e.diet.trim());
+            const hasDiet = !!(e.diet && e.diet.trim());
 
-if(hasW){
-  const t = document.createElement("span");
-  t.className="tag";
-  t.style.background="var(--w)";
-  mrow.appendChild(t);
-}
+            if(hasW){
+              const t = document.createElement("span");
+              t.className="tag";
+              t.style.background="var(--w)";
+              mrow.appendChild(t);
+            }
 
-/* ✅ pallini SOLO per le attività effettivamente selezionate */
-if(wo.gym){
-  const t = document.createElement("span");
-  t.className="tag";
-  t.style.background="var(--g)";
-  mrow.appendChild(t);
-}
-if(wo.soccer){
-  const t = document.createElement("span");
-  t.className="tag";
-  t.style.background="var(--s)";
-  mrow.appendChild(t);
-}
-if(wo.pool){
-  const t = document.createElement("span");
-  t.className="tag";
-  t.style.background="var(--p)";
-  mrow.appendChild(t);
-}
+            // ✅ pallini SOLO per attività selezionate
+            if(wo.gym){
+              const t = document.createElement("span");
+              t.className="tag";
+              t.style.background="var(--g)";
+              mrow.appendChild(t);
+            }
+            if(wo.soccer){
+              const t = document.createElement("span");
+              t.className="tag";
+              t.style.background="var(--s)";
+              mrow.appendChild(t);
+            }
+            if(wo.pool){
+              const t = document.createElement("span");
+              t.className="tag";
+              t.style.background="var(--p)";
+              mrow.appendChild(t);
+            }
 
-if(hasDiet){
-  const t = document.createElement("span");
-  t.className="tag";
-  t.style.background="var(--d)";
-  mrow.appendChild(t);
-}
-
+            if(hasDiet){
+              const t = document.createElement("span");
+              t.className="tag";
+              t.style.background="var(--d)";
+              mrow.appendChild(t);
+            }
           }
 
           cell.appendChild(n);
           cell.appendChild(mrow);
 
           cell.addEventListener("click", ()=>{
-            // sempre aggiorno selectedDate per mantenere "✍️ Inserisci" coerente
             state.ui.selectedDate = dateIso;
 
             if(state.ui.multiSel){
@@ -1066,7 +1064,11 @@ if(hasDiet){
         return arr;
       }
 
-      function lastKnownWeight(){
+      // ✅ usa lastWeight come fonte primaria, fallback scan entries
+      function lastKnownWeight(forceScan=false){
+        if(!forceScan && state.lastWeight && state.lastWeight.date && state.lastWeight.weight !== null){
+          return { date: state.lastWeight.date, weight: Number(state.lastWeight.weight) };
+        }
         const keys = Object.keys(state.entries).sort();
         for(let i=keys.length-1; i>=0; i--){
           const e = state.entries[keys[i]];
@@ -1325,7 +1327,7 @@ if(hasDiet){
       }
 
       function refreshGoalAndProgress(){
-        const last = lastKnownWeight();
+        const last = lastKnownWeight(false);
         const sw = parseNum(state.profile.startWeightKg);
         const tw = parseNum(state.goal.targetWeightKg);
 
@@ -1466,8 +1468,6 @@ if(hasDiet){
 
         sel.addEventListener("change", ()=>{
           state.ui.month = Number(sel.value);
-
-          // se cambio mese, la selezione multipla si svuota per evitare confusione
           state.ui.selectedDays = [];
           state.ui.multiSel = false;
 
@@ -1499,9 +1499,7 @@ if(hasDiet){
       }
 
       function bindDayEditor(){
-        $("openDayBtn").addEventListener("click", ()=>{
-          openDayEditor();
-        });
+        $("openDayBtn").addEventListener("click", openDayEditor);
         $("closeModal").addEventListener("click", closeDayEditor);
         $("modal").addEventListener("click", (e)=>{
           if(e.target === $("modal")) closeDayEditor();
@@ -1516,16 +1514,21 @@ if(hasDiet){
           const e = state.entries[k] || { workouts:{gym:false,soccer:false,pool:false} };
           e.workouts = e.workouts || {gym:false,soccer:false,pool:false};
 
-          const w = $("dayWeight").value;
-          const c = $("dayCirc").value;
+          const wNum = parseNum($("dayWeight").value);
+          const cNum = parseNum($("dayCirc").value);
 
-          e.weightKg = w ? String(w) : "";
-          e.circCm = c ? String(c) : "";
+          e.weightKg = (wNum !== null) ? String(wNum) : "";
+          e.circCm   = (cNum !== null) ? String(cNum) : "";
           e.diet = ($("dayDiet").value || "").trim();
 
           e.workouts.gym = getToggleUI("gym");
           e.workouts.soccer = getToggleUI("soccer");
           e.workouts.pool = getToggleUI("pool");
+
+          // ✅ NEW: memorizza ultimo peso registrato (persistente)
+          if(wNum !== null){
+            state.lastWeight = { date: k, weight: wNum };
+          }
 
           if(!entryHasAny(e)) delete state.entries[k];
           else state.entries[k] = e;
@@ -1540,6 +1543,14 @@ if(hasDiet){
         $("clearDay").addEventListener("click", ()=>{
           const k = state.ui.selectedDate;
           delete state.entries[k];
+
+          // ✅ se sto cancellando il giorno dell'ultimo peso, lo ricalcolo
+          if(state.lastWeight && state.lastWeight.date === k){
+            state.lastWeight = { date:null, weight:null };
+            const lw = lastKnownWeight(true);
+            if(lw) state.lastWeight = { date: lw.date, weight: lw.weight };
+          }
+
           saveLS();
           closeDayEditor();
           renderCalendar();
@@ -1579,8 +1590,7 @@ if(hasDiet){
             alert("Seleziona almeno 1 giorno nel calendario.");
             return;
           }
-          const val = $("batchDiet").value || "";
-          applyDietToSelected(val);
+          applyDietToSelected($("batchDiet").value || "");
         });
       }
 
@@ -1609,12 +1619,22 @@ if(hasDiet){
             if(obj.profile) state.profile = { ...state.profile, ...obj.profile };
             if(obj.goal) state.goal = { ...state.goal, ...obj.goal };
             if(obj.entries) state.entries = obj.entries;
+            if(obj.lastWeight) state.lastWeight = { ...state.lastWeight, ...obj.lastWeight };
             if(obj.ui) state.ui = { ...state.ui, ...obj.ui };
 
             if(!state.goal.targetDate) state.goal.targetDate = `${YEAR}-12-31`;
             if(!Number.isFinite(state.ui.month)) state.ui.month = 0;
             if(!Array.isArray(state.ui.selectedDays)) state.ui.selectedDays = [];
             state.ui.multiSel = !!state.ui.multiSel;
+
+            if(!state.lastWeight || typeof state.lastWeight !== "object"){
+              state.lastWeight = { date:null, weight:null };
+            }
+            // se manca lastWeight, lo ricavo
+            if(!state.lastWeight.date || state.lastWeight.weight === null){
+              const lw = lastKnownWeight(true);
+              if(lw) state.lastWeight = { date: lw.date, weight: lw.weight };
+            }
 
             saveLS();
             bindSettings();
@@ -1654,6 +1674,15 @@ if(hasDiet){
         } else {
           const m = Number(state.ui.selectedDate.slice(5,7)) - 1;
           if(Number.isFinite(m)) state.ui.month = clamp(m,0,11);
+        }
+
+        // se lastWeight non è settato, prova a ricavarlo
+        if(!state.lastWeight || typeof state.lastWeight !== "object"){
+          state.lastWeight = { date:null, weight:null };
+        }
+        if(!state.lastWeight.date || state.lastWeight.weight === null){
+          const lw = lastKnownWeight(true);
+          if(lw) state.lastWeight = { date: lw.date, weight: lw.weight };
         }
 
         updateSelectedBadge();
