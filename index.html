@@ -18,17 +18,17 @@
       --shadow: 0 16px 40px rgba(0,0,0,.35);
       --radius:18px;
 
-      --accent:#0ea5a4;    /* tiffany */
-      --accent2:#7c3aed;   /* viola */
+      --accent:#0ea5a4;
+      --accent2:#7c3aed;
       --good:#22c55e;
       --warn:#f59e0b;
       --bad:#ef4444;
 
-      --w:#60a5fa;   /* peso */
-      --g:#34d399;   /* palestra */
-      --s:#fb7185;   /* calcio */
-      --p:#a78bfa;   /* piscina */
-      --d:#fbbf24;   /* dieta */
+      --w:#60a5fa;
+      --g:#34d399;
+      --s:#fb7185;
+      --p:#a78bfa;
+      --d:#fbbf24;
     }
 
     *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
@@ -36,22 +36,18 @@
     body{
       margin:0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
-      background: radial-gradient(1200px 700px at 20% -10%, rgba(14,165,164,.25), transparent 60%),
-                  radial-gradient(900px 600px at 100% 10%, rgba(124,58,237,.18), transparent 55%),
-                  linear-gradient(180deg, var(--bg), var(--bg2));
+      background:
+        radial-gradient(1200px 700px at 20% -10%, rgba(14,165,164,.25), transparent 60%),
+        radial-gradient(900px 600px at 100% 10%, rgba(124,58,237,.18), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
       color: var(--text);
     }
 
-    .app{
-      max-width: 430px;
-      margin: 0 auto;
-      min-height:100%;
-      padding: 14px 12px 26px;
-    }
+    .app{ max-width:430px; margin:0 auto; min-height:100%; padding:14px 12px 26px; }
 
     .topbar{
       position: sticky;
-      top:0;
+      top: 0;
       z-index: 50;
       padding: 10px 10px 12px;
       border: 1px solid var(--border);
@@ -62,52 +58,57 @@
     }
     .topbar .row{ display:flex; align-items:center; justify-content:space-between; gap:10px; }
     .brand{ display:flex; flex-direction:column; gap:2px; }
-    .brand .t{ font-weight: 900; letter-spacing:.2px; font-size: 15px; line-height:1.1; }
-    .brand .s{ font-size: 12px; color: var(--muted); line-height:1.2; }
+    .brand .t{ font-weight:900; letter-spacing:.2px; font-size:15px; line-height:1.1; }
+    .brand .s{ font-size:12px; color:var(--muted); line-height:1.2; }
+
     .pill{
       display:flex; align-items:center; gap:8px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      padding: 8px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      color: var(--muted);
-      white-space: nowrap;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,.06);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
     }
-    .dot{ width:10px; height:10px; border-radius:50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(14,165,164,.18); }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 3px rgba(14,165,164,.18);
+    }
 
     .tabs{ display:flex; gap:8px; margin-top:10px; }
     .tab{
       flex:1;
       border:1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      color: var(--muted);
-      padding: 10px 10px;
-      border-radius: 14px;
-      font-weight: 700;
-      font-size: 13px;
+      background:rgba(255,255,255,.06);
+      color:var(--muted);
+      padding:10px 10px;
+      border-radius:14px;
+      font-weight:700;
+      font-size:13px;
       text-align:center;
       cursor:pointer;
       user-select:none;
     }
     .tab.active{
-      color: #081523;
-      background: linear-gradient(135deg, rgba(14,165,164,1), rgba(96,165,250,1));
-      border-color: rgba(255,255,255,.08);
-      box-shadow: 0 12px 28px rgba(14,165,164,.20);
+      color:#081523;
+      background:linear-gradient(135deg, rgba(14,165,164,1), rgba(96,165,250,1));
+      border-color:rgba(255,255,255,.08);
+      box-shadow:0 12px 28px rgba(14,165,164,.20);
     }
 
     .grid{ margin-top:12px; display:flex; flex-direction:column; gap:12px; }
 
     .card{
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: rgba(255,255,255,.06);
-      box-shadow: var(--shadow);
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.06);
+      box-shadow:var(--shadow);
       overflow:hidden;
     }
     .card .head{
-      padding: 12px 12px 10px;
+      padding:12px 12px 10px;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -115,21 +116,21 @@
       border-bottom:1px solid rgba(255,255,255,.08);
     }
     .card .head .title{
-      font-weight: 900;
-      font-size: 14px;
+      font-weight:900;
+      font-size:14px;
       letter-spacing:.2px;
       display:flex; align-items:center; gap:8px;
     }
     .badge{
-      font-size: 11px;
-      color: rgba(255,255,255,.92);
-      padding: 6px 10px;
-      border-radius: 999px;
+      font-size:11px;
+      color:rgba(255,255,255,.92);
+      padding:6px 10px;
+      border-radius:999px;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
+      background:rgba(0,0,0,.18);
       white-space:nowrap;
     }
-    .card .body{ padding: 12px; }
+    .card .body{ padding:12px; }
 
     .card.weight{ background: linear-gradient(180deg, rgba(96,165,250,.14), rgba(255,255,255,.05)); }
     .card.goal{ background: linear-gradient(180deg, rgba(14,165,164,.16), rgba(255,255,255,.05)); }
@@ -138,70 +139,64 @@
     .card.profile{ background: linear-gradient(180deg, rgba(124,58,237,.14), rgba(255,255,255,.05)); }
     .card.calendar{ background: linear-gradient(180deg, rgba(251,113,133,.12), rgba(255,255,255,.05)); }
 
-    .two{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+    .two{ display:grid; grid-template-columns:1fr 1fr; gap:10px; }
     .field{ display:flex; flex-direction:column; gap:6px; }
-    label{ font-size: 11px; color: var(--muted); letter-spacing:.2px; }
+    label{ font-size:11px; color:var(--muted); letter-spacing:.2px; }
+
     input, select, textarea{
-      width: 100%;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(8,18,32,.55);
-      color: var(--text);
-      padding: 10px 10px;
-      border-radius: 14px;
-      outline: none;
-      font-size: 14px;
+      width:100%;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(8,18,32,.55);
+      color:var(--text);
+      padding:10px 10px;
+      border-radius:14px;
+      outline:none;
+      font-size:14px;
     }
-    input::placeholder, textarea::placeholder{ color: rgba(159,178,204,.65); }
+    input::placeholder, textarea::placeholder{ color:rgba(159,178,204,.65); }
     input:focus, select:focus, textarea:focus{
-      border-color: rgba(14,165,164,.55);
-      box-shadow: 0 0 0 3px rgba(14,165,164,.18);
+      border-color:rgba(14,165,164,.55);
+      box-shadow:0 0 0 3px rgba(14,165,164,.18);
     }
 
     .btnrow{ display:flex; gap:10px; flex-wrap:wrap; }
     .btn{
       flex:1;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.08);
-      color: var(--text);
-      padding: 10px 12px;
-      border-radius: 14px;
-      font-weight: 800;
-      font-size: 13px;
+      background:rgba(255,255,255,.08);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:800;
+      font-size:13px;
       cursor:pointer;
       user-select:none;
       display:flex; align-items:center; justify-content:center; gap:8px;
     }
     .btn.primary{
-      background: linear-gradient(135deg, rgba(14,165,164,1), rgba(96,165,250,1));
-      border-color: rgba(255,255,255,.08);
-      color: #081523;
+      background:linear-gradient(135deg, rgba(14,165,164,1), rgba(96,165,250,1));
+      border-color:rgba(255,255,255,.08);
+      color:#081523;
     }
     .btn.danger{
-      background: rgba(239,68,68,.16);
-      border-color: rgba(239,68,68,.35);
+      background:rgba(239,68,68,.16);
+      border-color:rgba(239,68,68,.35);
     }
-    .btn.small{
-      flex:0 0 auto;
-      width:auto;
-      padding: 10px 12px;
-    }
-    .btn.toggleon{
-      background: rgba(245,158,11,.16);
-      border-color: rgba(245,158,11,.35);
-    }
+    .btn.small{ flex:0 0 auto; width:auto; padding:10px 12px; }
+    .btn.toggleon{ background:rgba(245,158,11,.16); border-color:rgba(245,158,11,.35); }
 
-    .mini{ font-size: 12px; color: var(--muted); line-height:1.35; }
+    .mini{ font-size:12px; color:var(--muted); line-height:1.35; }
 
     .calbar{ display:flex; gap:10px; align-items:center; }
-    .calbar select{ flex: 1; }
-    .calhint{ font-size: 11px; color: var(--muted); margin-top:8px; }
+    .calbar select{ flex:1; }
+    .calhint{ font-size:11px; color:var(--muted); margin-top:8px; }
 
     .batchbar{
       margin-top:10px;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(8,18,32,.35);
-      border-radius: 18px;
-      padding: 10px;
+      background:rgba(8,18,32,.35);
+      border-radius:18px;
+      padding:10px;
       display:none;
       gap:10px;
       flex-direction:column;
@@ -210,23 +205,23 @@
 
     .dow{
       display:grid;
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns:repeat(7, 1fr);
       gap:6px;
-      padding: 10px 12px 0;
-      color: rgba(159,178,204,.9);
-      font-size: 11px;
+      padding:10px 12px 0;
+      color:rgba(159,178,204,.9);
+      font-size:11px;
     }
     .calgrid{
       display:grid;
-      grid-template-columns: repeat(7, 1fr);
+      grid-template-columns:repeat(7, 1fr);
       gap:6px;
-      padding: 10px 12px 12px;
+      padding:10px 12px 12px;
     }
     .day{
-      aspect-ratio: 1 / 1;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(8,18,32,.45);
+      aspect-ratio:1 / 1;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(8,18,32,.45);
       display:flex;
       align-items:center;
       justify-content:center;
@@ -234,129 +229,128 @@
       gap:4px;
       cursor:pointer;
       user-select:none;
-      position: relative;
+      position:relative;
       overflow:hidden;
     }
-    .day .n{ font-weight: 900; font-size: 13px; }
+    .day .n{ font-weight:900; font-size:13px; }
     .day .m{
-      font-size: 10px;
-      color: rgba(159,178,204,.9);
+      font-size:10px;
+      color:rgba(159,178,204,.9);
       display:flex; gap:4px; align-items:center;
     }
-    .tag{ width: 8px; height: 8px; border-radius:50%; opacity:.95; }
-    .day.empty{ border-color: transparent; background: transparent; cursor: default; }
+    .tag{ width:8px; height:8px; border-radius:50%; opacity:.95; }
+    .day.empty{ border-color:transparent; background:transparent; cursor:default; }
     .day.sel{
-      border-color: rgba(14,165,164,.55);
-      box-shadow: 0 0 0 3px rgba(14,165,164,.18);
-      background: rgba(14,165,164,.12);
+      border-color:rgba(14,165,164,.55);
+      box-shadow:0 0 0 3px rgba(14,165,164,.18);
+      background:rgba(14,165,164,.12);
     }
     .day.msel{
-      border-color: rgba(245,158,11,.55);
-      box-shadow: 0 0 0 3px rgba(245,158,11,.16);
-      background: rgba(245,158,11,.10);
+      border-color:rgba(245,158,11,.55);
+      box-shadow:0 0 0 3px rgba(245,158,11,.16);
+      background:rgba(245,158,11,.10);
     }
-    .day.msel .n{ color: rgba(255,255,255,.98); }
+    .day.msel .n{ color:rgba(255,255,255,.98); }
     .day.msel::before{
       content:"✓";
       position:absolute;
       top:6px; right:8px;
-      font-weight: 1000;
-      font-size: 12px;
-      color: rgba(245,158,11,.95);
-      background: rgba(0,0,0,.18);
+      font-weight:1000;
+      font-size:12px;
+      color:rgba(245,158,11,.95);
+      background:rgba(0,0,0,.18);
       border:1px solid rgba(255,255,255,.10);
       width:18px; height:18px;
       display:flex; align-items:center; justify-content:center;
-      border-radius: 8px;
+      border-radius:8px;
     }
     .day.monthend::after{
       content:"";
       position:absolute; inset:0;
-      background: linear-gradient(135deg, rgba(245,158,11,.18), transparent 60%);
+      background:linear-gradient(135deg, rgba(245,158,11,.18), transparent 60%);
       pointer-events:none;
     }
 
     .kpis{
       display:grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns:repeat(2, 1fr);
       gap:10px;
-      margin-top: 10px;
+      margin-top:10px;
     }
     .kpi{
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(8,18,32,.40);
-      border-radius: 16px;
-      padding: 10px 10px;
+      background:rgba(8,18,32,.40);
+      border-radius:16px;
+      padding:10px 10px;
     }
-    .kpi .l{ font-size: 11px; color: var(--muted); }
-    .kpi .v{ font-size: 18px; font-weight: 900; margin-top: 2px; }
-    .kpi .sub{ font-size: 11px; color: rgba(159,178,204,.85); margin-top: 2px; }
+    .kpi .l{ font-size:11px; color:var(--muted); }
+    .kpi .v{ font-size:18px; font-weight:900; margin-top:2px; }
+    .kpi .sub{ font-size:11px; color:rgba(159,178,204,.85); margin-top:2px; }
 
     .status{
       display:flex; align-items:center; gap:10px;
-      padding: 10px 10px;
-      border-radius: 16px;
+      padding:10px 10px;
+      border-radius:16px;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(8,18,32,.40);
-      margin-top: 10px;
+      background:rgba(8,18,32,.40);
+      margin-top:10px;
     }
     .status .bubble{
-      width: 42px; height: 42px; border-radius: 14px;
+      width:42px; height:42px; border-radius:14px;
       display:flex; align-items:center; justify-content:center;
-      font-weight: 1000;
+      font-weight:1000;
       border:1px solid rgba(255,255,255,.10);
     }
-    .status.ok .bubble{ background: rgba(34,197,94,.16); color: var(--good); }
-    .status.warn .bubble{ background: rgba(245,158,11,.16); color: var(--warn); }
-    .status.bad .bubble{ background: rgba(239,68,68,.16); color: var(--bad); }
+    .status.ok .bubble{ background:rgba(34,197,94,.16); color:var(--good); }
+    .status.warn .bubble{ background:rgba(245,158,11,.16); color:var(--warn); }
+    .status.bad .bubble{ background:rgba(239,68,68,.16); color:var(--bad); }
     .status .txt{ display:flex; flex-direction:column; gap:2px; }
-    .status .txt .a{ font-weight: 900; font-size: 13px; }
-    .status .txt .b{ color: var(--muted); font-size: 12px; line-height:1.25; }
+    .status .txt .a{ font-weight:900; font-size:13px; }
+    .status .txt .b{ color:var(--muted); font-size:12px; line-height:1.25; }
 
     .modal{
-      position: fixed;
+      position:fixed;
       inset:0;
-      background: rgba(0,0,0,.55);
+      background:rgba(0,0,0,.55);
       display:none;
       align-items:flex-end;
       justify-content:center;
-      padding: 12px;
-      z-index: 200;
+      padding:12px;
+      z-index:200;
     }
     .modal.open{ display:flex; }
     .sheet{
-      width: 100%;
-      max-width: 430px;
-      border-radius: 22px;
+      width:100%;
+      max-width:430px;
+      border-radius:22px;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(12,22,42,.92);
+      background:rgba(12,22,42,.92);
       backdrop-filter: blur(10px);
-      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+      box-shadow:0 18px 60px rgba(0,0,0,.55);
       overflow:hidden;
     }
     .sheet .shhead{
-      padding: 12px 12px 10px;
+      padding:12px 12px 10px;
       display:flex; align-items:center; justify-content:space-between; gap:10px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      border-bottom:1px solid rgba(255,255,255,.08);
     }
     .sheet .shhead .t{
-      font-weight: 1000;
-      font-size: 14px;
+      font-weight:1000;
+      font-size:14px;
       display:flex; flex-direction:column; gap:2px;
     }
-    .sheet .shhead .t span{ font-size: 12px; color: var(--muted); font-weight: 700; }
+    .sheet .shhead .t span{ font-size:12px; color:var(--muted); font-weight:700; }
     .xbtn{
-      width: 40px; height: 40px;
-      border-radius: 14px;
+      width:40px; height:40px;
+      border-radius:14px;
       display:flex; align-items:center; justify-content:center;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
+      background:rgba(255,255,255,.06);
       cursor:pointer;
-      font-weight: 1000;
+      font-weight:1000;
     }
-    .sheet .shbody{ padding: 12px; }
+    .sheet .shbody{ padding:12px; }
 
-    /* ✅ Toggles: flex-wrap, 2 per riga su mobile (Piscina sempre visibile) */
     .toggles{
       display:flex;
       flex-wrap:wrap;
@@ -364,13 +358,12 @@
       margin-top:10px;
     }
     .toggle{
-      flex: 1 1 calc(50% - 10px);
-      min-width: 0;
-
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(8,18,32,.40);
-      border-radius: 16px;
-      padding: 10px 8px;
+      flex:1 1 calc(50% - 10px);
+      min-width:0;
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(8,18,32,.40);
+      border-radius:16px;
+      padding:10px 8px;
       display:flex;
       align-items:center;
       justify-content:space-between;
@@ -378,19 +371,19 @@
       cursor:pointer;
       user-select:none;
     }
-    @media (min-width: 420px){
-      .toggle{ flex: 1 1 calc(33.333% - 10px); }
+    @media (min-width:420px){
+      .toggle{ flex:1 1 calc(33.333% - 10px); }
     }
     .toggle .name{
-      font-weight: 900;
-      font-size: 12px;
+      font-weight:900;
+      font-size:12px;
       display:flex; align-items:center; gap:8px;
     }
     .sw{
-      width: 44px; height: 26px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.10);
-      position: relative;
+      width:44px; height:26px;
+      border-radius:999px;
+      background:rgba(255,255,255,.10);
+      position:relative;
       border:1px solid rgba(255,255,255,.10);
       flex:0 0 auto;
     }
@@ -398,55 +391,55 @@
       content:"";
       position:absolute;
       top:3px; left:3px;
-      width: 20px; height:20px;
-      border-radius: 50%;
-      background: rgba(255,255,255,.82);
-      transition: transform .18s ease;
+      width:20px; height:20px;
+      border-radius:50%;
+      background:rgba(255,255,255,.82);
+      transition:transform .18s ease;
     }
-    .toggle.on .sw{ background: rgba(34,197,94,.20); border-color: rgba(34,197,94,.35); }
-    .toggle.on .sw::after{ transform: translateX(18px); background: rgba(34,197,94,.95); }
+    .toggle.on .sw{ background:rgba(34,197,94,.20); border-color:rgba(34,197,94,.35); }
+    .toggle.on .sw::after{ transform:translateX(18px); background:rgba(34,197,94,.95); }
 
     .note{
-      margin-top: 10px;
-      padding: 10px 10px;
-      border-radius: 16px;
-      border: 1px dashed rgba(255,255,255,.16);
-      color: rgba(159,178,204,.95);
-      font-size: 12px;
-      line-height: 1.35;
-      background: rgba(8,18,32,.35);
+      margin-top:10px;
+      padding:10px 10px;
+      border-radius:16px;
+      border:1px dashed rgba(255,255,255,.16);
+      color:rgba(159,178,204,.95);
+      font-size:12px;
+      line-height:1.35;
+      background:rgba(8,18,32,.35);
     }
 
     .chartwrap{
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(8,18,32,.35);
-      border-radius: 18px;
-      padding: 10px;
+      background:rgba(8,18,32,.35);
+      border-radius:18px;
+      padding:10px;
       overflow:hidden;
     }
     .legend{
       display:flex; gap:10px; flex-wrap:wrap;
-      margin-top: 10px;
-      color: var(--muted);
-      font-size: 12px;
+      margin-top:10px;
+      color:var(--muted);
+      font-size:12px;
     }
     .leg{
       display:flex; align-items:center; gap:6px;
-      padding: 6px 10px;
-      border-radius: 999px;
+      padding:6px 10px;
+      border-radius:999px;
       border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
+      background:rgba(255,255,255,.06);
     }
     .leg .line{
-      width: 18px; height: 4px; border-radius: 999px;
-      background: var(--w);
+      width:18px; height:4px; border-radius:999px;
+      background:var(--w);
     }
-    .leg.proj .line{ background: var(--accent); }
+    .leg.proj .line{ background:var(--accent); }
 
     .footerhint{
-      margin-top: 10px;
-      color: rgba(159,178,204,.85);
-      font-size: 11px;
+      margin-top:10px;
+      color:rgba(159,178,204,.85);
+      font-size:11px;
       line-height:1.35;
       text-align:center;
     }
@@ -461,7 +454,7 @@
           <div class="t">Progressi Peso • 2026</div>
           <div class="s" id="subtitle">Profilo + calendario + dashboard</div>
         </div>
-        <div class="pill" id="todayPill"><span class="dot"></span><span id="todayTxt">Oggi</span></div>
+        <div class="pill"><span class="dot"></span><span id="todayTxt">Oggi</span></div>
       </div>
       <div class="tabs">
         <div class="tab active" data-tab="dash">Dashboard</div>
@@ -470,7 +463,7 @@
       </div>
     </div>
 
-    <!-- DASH -->
+    <!-- DASHBOARD -->
     <div class="grid" id="viewDash">
       <div class="card weight">
         <div class="head">
@@ -498,14 +491,24 @@
               <div class="sub" id="kpiTargetSub">entro il 31/12/2026</div>
             </div>
             <div class="kpi">
-              <div class="l">Reale (ultimo)</div>
+              <div class="l">Ultimo peso</div>
               <div class="v" id="kpiLast">—</div>
               <div class="sub" id="kpiLastSub">nessun inserimento</div>
             </div>
             <div class="kpi">
-              <div class="l">Scarto vs atteso</div>
+              <div class="l">Previsto oggi</div>
+              <div class="v" id="kpiExpected">—</div>
+              <div class="sub" id="kpiExpectedSub">su proiezione obiettivo</div>
+            </div>
+            <div class="kpi">
+              <div class="l">Scarto</div>
               <div class="v" id="kpiDelta">—</div>
-              <div class="sub" id="kpiDeltaSub">calcolato su oggi</div>
+              <div class="sub" id="kpiDeltaSub">ultimo vs previsto</div>
+            </div>
+            <div class="kpi">
+              <div class="l">Peso perso</div>
+              <div class="v" id="kpiLost">—</div>
+              <div class="sub" id="kpiLostSub">iniziale vs ultimo</div>
             </div>
           </div>
 
@@ -513,11 +516,11 @@
             <div class="bubble" id="statusIcon">≈</div>
             <div class="txt">
               <div class="a" id="statusTitle">Imposta profilo e obiettivo</div>
-              <div class="b" id="statusText">Inserisci peso iniziale e peso obiettivo: ti calcolo la perdita media mensile e il confronto reale vs proiezione.</div>
+              <div class="b" id="statusText">Inserisci peso iniziale, obiettivo e almeno un peso reale per valutare l’andamento.</div>
             </div>
           </div>
 
-          <div class="footerhint">Tip: inserisci il peso a fine mese (giorni evidenziati). Puoi comunque inserire anche in altri giorni.</div>
+          <div class="footerhint">La dashboard usa sempre come riferimento l’ultimo peso realmente salvato. I valori 0 non vengono mai considerati peso valido.</div>
         </div>
       </div>
 
@@ -577,7 +580,7 @@
       </div>
     </div>
 
-    <!-- CAL -->
+    <!-- CALENDARIO -->
     <div class="grid" id="viewCal" style="display:none;">
       <div class="card calendar">
         <div class="head">
@@ -616,7 +619,7 @@
             <div class="mini">Puoi sempre modificare il singolo giorno con “✍️ Inserisci”.</div>
           </div>
 
-          <div class="calhint">Legenda: ● peso inserito • ● palestra/cacio/piscina • ● dieta. Fine mese evidenziato.</div>
+          <div class="calhint">Legenda: ● peso • ● palestra / calcio / piscina • ● dieta. Fine mese evidenziato.</div>
 
           <div class="dow">
             <div>Lun</div><div>Mar</div><div>Mer</div><div>Gio</div><div>Ven</div><div>Sab</div><div>Dom</div>
@@ -640,7 +643,7 @@
       </div>
     </div>
 
-    <!-- SETTINGS -->
+    <!-- IMPOSTAZIONI -->
     <div class="grid" id="viewSet" style="display:none;">
       <div class="card profile">
         <div class="head">
@@ -671,7 +674,7 @@
             </div>
             <div class="field">
               <label>Circonferenza iniziale (cm)</label>
-              <input id="startCirc" type="number" step="0.1" placeholder="Es. 120" />
+              <input id="startCirc" type="number" step="0.1" placeholder="120" />
             </div>
           </div>
         </div>
@@ -686,7 +689,7 @@
           <div class="two">
             <div class="field">
               <label>Peso obiettivo (kg)</label>
-              <input id="targetWeight" type="number" step="0.1" placeholder="Es. 95" />
+              <input id="targetWeight" type="number" step="0.1" placeholder="95" />
             </div>
             <div class="field">
               <label>Data obiettivo</label>
@@ -703,7 +706,7 @@
       <div class="card">
         <div class="head">
           <div class="title">💾 Dati</div>
-          <div class="badge" id="storageBadge">localStorage</div>
+          <div class="badge">localStorage</div>
         </div>
         <div class="body">
           <div class="btnrow">
@@ -722,11 +725,11 @@
     </div>
   </div>
 
-  <!-- Modal / Bottom sheet -->
+  <!-- MODAL GIORNO -->
   <div class="modal" id="modal">
     <div class="sheet">
       <div class="shhead">
-        <div class="t" id="sheetTitle">Giorno
+        <div class="t">Giorno
           <span id="sheetSub">—</span>
         </div>
         <div class="xbtn" id="closeModal">✕</div>
@@ -736,11 +739,11 @@
         <div class="two">
           <div class="field">
             <label>Peso (kg)</label>
-            <input id="dayWeight" type="number" step="0.1" placeholder="Es. 121.4" />
+            <input id="dayWeight" type="number" step="0.1" placeholder="121.4" />
           </div>
           <div class="field">
             <label>Circonferenza (cm)</label>
-            <input id="dayCirc" type="number" step="0.1" placeholder="Es. 118.0" />
+            <input id="dayCirc" type="number" step="0.1" placeholder="118.0" />
           </div>
         </div>
 
@@ -756,15 +759,15 @@
         </div>
 
         <div class="toggles">
-          <div class="toggle" data-toggle="gym" id="tGym">
+          <div class="toggle" id="tGym">
             <div class="name"><span class="tag" style="background:var(--g)"></span>Palestra</div>
             <div class="sw"></div>
           </div>
-          <div class="toggle" data-toggle="soccer" id="tSoccer">
+          <div class="toggle" id="tSoccer">
             <div class="name"><span class="tag" style="background:var(--s)"></span>Calcio</div>
             <div class="sw"></div>
           </div>
-          <div class="toggle" data-toggle="pool" id="tPool">
+          <div class="toggle" id="tPool">
             <div class="name"><span class="tag" style="background:var(--p)"></span>Piscina</div>
             <div class="sw"></div>
           </div>
@@ -776,7 +779,7 @@
         </div>
 
         <div class="mini" style="margin-top:10px;">
-          Editor singolo giorno: puoi modificare tutto (peso, circonferenza, alimentazione, allenamenti).
+          Il peso 0 o valori non validi non vengono salvati come peso reale.
         </div>
       </div>
     </div>
@@ -784,45 +787,61 @@
 
   <script>
     (function(){
-      const LS_KEY = "weight_tracker_2026_v1";
+      const LS_KEY = "weight_tracker_2026_v2";
       const YEAR = 2026;
 
       const $ = (id)=>document.getElementById(id);
       const tabs = [...document.querySelectorAll(".tab")];
-      const views = { dash: $("viewDash"), cal: $("viewCal"), set: $("viewSet") };
+      const views = { dash:$("viewDash"), cal:$("viewCal"), set:$("viewSet") };
 
       const state = {
-        profile: { name:"", age:"", heightCm:"", startWeightKg:"", startCircCm:"" },
-        goal: { targetWeightKg:"", targetDate: `${YEAR}-12-31` },
+        profile: {
+          name:"",
+          age:"",
+          heightCm:"",
+          startWeightKg:"",
+          startCircCm:""
+        },
+        goal: {
+          targetWeightKg:"",
+          targetDate:`${YEAR}-12-31`
+        },
         entries: {},
-
-        // ✅ NEW: ultimo peso registrato (persistente)
-        lastWeight: { date: null, weight: null },
-
+        lastWeight: { date:null, weight:null },
         ui: {
-          month: 0,
-          selectedDate: null,
-          multiSel: false,
-          selectedDays: []
+          month:0,
+          selectedDate:null,
+          multiSel:false,
+          selectedDays:[]
         }
-      };
-
-      const pad = (n)=> String(n).padStart(2,"0");
-      const iso = (y,m,d)=> `${y}-${pad(m+1)}-${pad(d)}`;
-      const itDate = (isoStr)=>{
-        const [y,m,d] = isoStr.split("-").map(Number);
-        return `${pad(d)}/${pad(m)}/${y}`;
-      };
-      const clamp = (v,min,max)=> Math.max(min, Math.min(max, v));
-      const round1 = (n)=> Math.round(n*10)/10;
-      const parseNum = (v)=> {
-        const n = Number(String(v ?? "").replace(",", "."));
-        return Number.isFinite(n) ? n : null;
       };
 
       const monthNames = ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"];
 
-      function saveLS(){ localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+      const pad = (n)=> String(n).padStart(2,"0");
+      const iso = (y,m,d)=> `${y}-${pad(m+1)}-${pad(d)}`;
+      const clamp = (v,min,max)=> Math.max(min, Math.min(max, v));
+      const round1 = (n)=> Math.round(n * 10) / 10;
+
+      function formatItDate(isoStr){
+        const [y,m,d] = isoStr.split("-").map(Number);
+        return `${pad(d)}/${pad(m)}/${y}`;
+      }
+
+      function parsePositiveNumber(v){
+        const n = Number(String(v ?? "").replace(",", ".").trim());
+        return Number.isFinite(n) && n > 0 ? n : null;
+      }
+
+      function parseNonNegativeNumber(v){
+        const n = Number(String(v ?? "").replace(",", ".").trim());
+        return Number.isFinite(n) && n >= 0 ? n : null;
+      }
+
+      function saveLS(){
+        localStorage.setItem(LS_KEY, JSON.stringify(state));
+      }
+
       function loadLS(){
         const raw = localStorage.getItem(LS_KEY);
         if(!raw) return;
@@ -832,48 +851,52 @@
             if(obj.profile) state.profile = { ...state.profile, ...obj.profile };
             if(obj.goal) state.goal = { ...state.goal, ...obj.goal };
             if(obj.entries) state.entries = obj.entries;
-
-            // ✅ NEW: ripristina lastWeight
             if(obj.lastWeight) state.lastWeight = { ...state.lastWeight, ...obj.lastWeight };
-            if(!state.lastWeight || typeof state.lastWeight !== "object"){
-              state.lastWeight = { date:null, weight:null };
-            }
-
             if(obj.ui) state.ui = { ...state.ui, ...obj.ui };
-            if(!Array.isArray(state.ui.selectedDays)) state.ui.selectedDays = [];
-            state.ui.multiSel = !!state.ui.multiSel;
           }
         }catch(e){}
+
+        if(!Array.isArray(state.ui.selectedDays)) state.ui.selectedDays = [];
+        state.ui.multiSel = !!state.ui.multiSel;
+        if(!state.lastWeight || typeof state.lastWeight !== "object"){
+          state.lastWeight = { date:null, weight:null };
+        }
       }
 
       function jsDowMondayFirst(date){
-        const d = date.getDay(); // 0 Sun..6 Sat
-        return (d + 6) % 7; // 0 Mon..6 Sun
+        const d = date.getDay();
+        return (d + 6) % 7;
       }
-      function daysInMonth(y,m){ return new Date(y, m+1, 0).getDate(); }
-      function isMonthEnd(y,m,d){ return d === daysInMonth(y,m); }
 
-      function entryHasAny(e){
-        if(!e) return false;
-        const w = parseNum(e.weightKg);
-        const c = parseNum(e.circCm);
-        const diet = (e.diet || "").trim();
-        const wo = e.workouts || {};
-        const anyWo = !!(wo.gym || wo.soccer || wo.pool);
-        return (w !== null) || (c !== null) || !!diet || anyWo;
+      function daysInMonth(y,m){
+        return new Date(y, m+1, 0).getDate();
+      }
+
+      function isMonthEnd(y,m,d){
+        return d === daysInMonth(y,m);
       }
 
       function toggleInArray(arr, val){
         const i = arr.indexOf(val);
-        if(i >= 0) arr.splice(i,1);
+        if(i >= 0) arr.splice(i, 1);
         else arr.push(val);
+      }
+
+      function entryHasAny(e){
+        if(!e) return false;
+        const weight = parsePositiveNumber(e.weightKg);
+        const circ = parseNonNegativeNumber(e.circCm);
+        const diet = (e.diet || "").trim();
+        const wo = e.workouts || {};
+        const anyWo = !!(wo.gym || wo.soccer || wo.pool);
+        return weight !== null || circ !== null || !!diet || anyWo;
       }
 
       function updateSelectedBadge(){
         if(state.ui.multiSel && state.ui.selectedDays.length){
           $("selectedDayBadge").textContent = `${state.ui.selectedDays.length} giorni selezionati`;
-        } else if(state.ui.selectedDate) {
-          $("selectedDayBadge").textContent = itDate(state.ui.selectedDate);
+        } else if(state.ui.selectedDate){
+          $("selectedDayBadge").textContent = formatItDate(state.ui.selectedDate);
         } else {
           $("selectedDayBadge").textContent = "Seleziona un giorno";
         }
@@ -881,11 +904,10 @@
 
       function updateBatchUI(){
         const on = state.ui.multiSel;
-        const btn = $("multiBtn");
-        btn.classList.toggle("toggleon", on);
-        btn.textContent = on ? "🟡 Selezione multipla: ON" : "🟡 Selezione multipla";
-        const bar = $("batchDietBar");
-        bar.classList.toggle("show", on);
+        $("multiBtn").classList.toggle("toggleon", on);
+        $("multiBtn").textContent = on ? "🟡 Selezione multipla: ON" : "🟡 Selezione multipla";
+        $("batchDietBar").classList.toggle("show", on);
+
         if(on){
           const n = state.ui.selectedDays.length;
           $("batchInfo").textContent = n
@@ -900,17 +922,480 @@
         if(!days.length) return;
 
         days.forEach(k=>{
-          const e = state.entries[k] || { workouts:{gym:false,soccer:false,pool:false} };
-          e.workouts = e.workouts || {gym:false,soccer:false,pool:false};
+          const e = state.entries[k] || {
+            weightKg:"",
+            circCm:"",
+            diet:"",
+            workouts:{ gym:false, soccer:false, pool:false }
+          };
+          e.workouts = e.workouts || { gym:false, soccer:false, pool:false };
           e.diet = (dietValue || "").trim();
 
-          if(!entryHasAny(e)) delete state.entries[k];
-          else state.entries[k] = e;
+          if(entryHasAny(e)) state.entries[k] = e;
+          else delete state.entries[k];
         });
 
         saveLS();
         renderCalendar();
         refreshAll();
+      }
+
+      function lastKnownWeight(forceScan=false){
+        if(!forceScan && state.lastWeight && state.lastWeight.date){
+          const lw = parsePositiveNumber(state.lastWeight.weight);
+          if(lw !== null){
+            return { date: state.lastWeight.date, weight: lw };
+          }
+        }
+
+        const keys = Object.keys(state.entries).sort();
+        for(let i=keys.length-1; i>=0; i--){
+          const e = state.entries[keys[i]];
+          const w = e ? parsePositiveNumber(e.weightKg) : null;
+          if(w !== null){
+            return { date: keys[i], weight: w };
+          }
+        }
+        return null;
+      }
+
+      function syncLastWeightFromEntries(){
+        const lw = lastKnownWeight(true);
+        if(lw){
+          state.lastWeight = { date: lw.date, weight: lw.weight };
+        } else {
+          state.lastWeight = { date:null, weight:null };
+        }
+      }
+
+      function expectedWeightOn(dateObj){
+        const sw = parsePositiveNumber(state.profile.startWeightKg);
+        const tw = parsePositiveNumber(state.goal.targetWeightKg);
+        const td = state.goal.targetDate
+          ? new Date(state.goal.targetDate + "T00:00:00")
+          : new Date(`${YEAR}-12-31T00:00:00`);
+
+        if(sw === null || tw === null) return null;
+
+        const start = new Date(`${YEAR}-01-01T00:00:00`);
+        const cur = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
+        const totalDays = (td - start) / 86400000;
+        if(totalDays <= 0) return tw;
+
+        const curDays = (cur - start) / 86400000;
+        const t = clamp(curDays / totalDays, 0, 1);
+        return sw + (tw - sw) * t;
+      }
+
+      function requiredMonthlyLoss(){
+        const sw = parsePositiveNumber(state.profile.startWeightKg);
+        const tw = parsePositiveNumber(state.goal.targetWeightKg);
+        const td = state.goal.targetDate
+          ? new Date(state.goal.targetDate + "T00:00:00")
+          : new Date(`${YEAR}-12-31T00:00:00`);
+
+        if(sw === null || tw === null) return null;
+
+        const start = new Date(`${YEAR}-01-01T00:00:00`);
+        let months = (td.getFullYear() - start.getFullYear()) * 12 + (td.getMonth() - start.getMonth()) + 1;
+        months = clamp(months, 1, 24);
+
+        return (sw - tw) / months;
+      }
+
+      function monthEndWeights(){
+        const arr = new Array(12).fill(null);
+
+        for(let m=0; m<12; m++){
+          const dim = daysInMonth(YEAR, m);
+          let found = null;
+
+          for(let d=dim; d>=1; d--){
+            const k = iso(YEAR, m, d);
+            const e = state.entries[k];
+            if(e){
+              const w = parsePositiveNumber(e.weightKg);
+              if(w !== null){
+                found = w;
+                break;
+              }
+            }
+          }
+          arr[m] = found;
+        }
+
+        return arr;
+      }
+
+      function renderWeightChart(){
+        const svg = $("weightSvg");
+        svg.innerHTML = "";
+
+        const wArr = monthEndWeights();
+        const sw = parsePositiveNumber(state.profile.startWeightKg);
+        const tw = parsePositiveNumber(state.goal.targetWeightKg);
+
+        const proj = new Array(12).fill(null);
+        if(sw !== null && tw !== null){
+          for(let m=0; m<12; m++){
+            const t = m / 11;
+            proj[m] = sw + (tw - sw) * t;
+          }
+        }
+
+        const vals = [];
+        wArr.forEach(v=> { if(v !== null) vals.push(v); });
+        proj.forEach(v=> { if(v !== null) vals.push(v); });
+
+        let vmin = 60, vmax = 140;
+        if(vals.length){
+          vmin = Math.min(...vals);
+          vmax = Math.max(...vals);
+          const padv = Math.max(2, (vmax - vmin) * 0.12);
+          vmin -= padv;
+          vmax += padv;
+        }
+        if(vmax - vmin < 5){
+          vmax += 3;
+          vmin -= 2;
+        }
+
+        const W = 340, H = 180;
+        const padX = 18, padY = 16;
+        const plotW = W - padX * 2;
+        const plotH = H - padY * 2;
+
+        const x = (i)=> padX + (plotW * (i / 11));
+        const y = (v)=> padY + (plotH * (1 - ((v - vmin) / (vmax - vmin))));
+
+        for(let i=0; i<3; i++){
+          const yy = padY + (plotH * (i / 2));
+          const line = document.createElementNS("http://www.w3.org/2000/svg","line");
+          line.setAttribute("x1","0");
+          line.setAttribute("x2",W);
+          line.setAttribute("y1",yy);
+          line.setAttribute("y2",yy);
+          line.setAttribute("stroke","rgba(255,255,255,.08)");
+          line.setAttribute("stroke-width","1");
+          svg.appendChild(line);
+        }
+
+        function makeText(tx,ty,txt,op=1){
+          const t = document.createElementNS("http://www.w3.org/2000/svg","text");
+          t.setAttribute("x", tx);
+          t.setAttribute("y", ty);
+          t.setAttribute("fill", `rgba(159,178,204,${op})`);
+          t.setAttribute("font-size", "11");
+          t.setAttribute("font-weight","800");
+          t.textContent = txt;
+          return t;
+        }
+
+        svg.appendChild(makeText(8, 14, `${round1(vmax)} kg`, .9));
+        svg.appendChild(makeText(8, H - 6, `${round1(vmin)} kg`, .7));
+
+        function polyline(points, stroke, dashed=false){
+          const pl = document.createElementNS("http://www.w3.org/2000/svg","polyline");
+          pl.setAttribute("fill","none");
+          pl.setAttribute("stroke", stroke);
+          pl.setAttribute("stroke-width","3");
+          pl.setAttribute("stroke-linecap","round");
+          pl.setAttribute("stroke-linejoin","round");
+          if(dashed) pl.setAttribute("stroke-dasharray","6 6");
+          pl.setAttribute("points", points.map(p=> `${p[0]},${p[1]}`).join(" "));
+          return pl;
+        }
+
+        if(proj.some(v=> v !== null)){
+          const pts = proj.map((v,i)=> [x(i), y(v)]);
+          svg.appendChild(polyline(pts, "rgba(14,165,164,.95)", true));
+        }
+
+        let seg = [];
+        for(let i=0; i<12; i++){
+          const v = wArr[i];
+          if(v === null){
+            if(seg.length >= 2) svg.appendChild(polyline(seg, "rgba(96,165,250,.95)", false));
+            seg = [];
+            continue;
+          }
+          seg.push([x(i), y(v)]);
+        }
+        if(seg.length >= 2){
+          svg.appendChild(polyline(seg, "rgba(96,165,250,.95)", false));
+        }
+
+        wArr.forEach((v,i)=>{
+          if(v === null) return;
+          const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
+          c.setAttribute("cx", x(i));
+          c.setAttribute("cy", y(v));
+          c.setAttribute("r","4.2");
+          c.setAttribute("fill","rgba(96,165,250,1)");
+          c.setAttribute("stroke","rgba(255,255,255,.18)");
+          c.setAttribute("stroke-width","1");
+          svg.appendChild(c);
+        });
+
+        const tickIdx = [0,3,6,9,11];
+        tickIdx.forEach((i,ix)=>{
+          const t = document.createElementNS("http://www.w3.org/2000/svg","text");
+          t.setAttribute("x", x(i));
+          t.setAttribute("y", H - 6);
+          t.setAttribute("fill", "rgba(159,178,204,.85)");
+          t.setAttribute("font-size","10");
+          t.setAttribute("font-weight","900");
+          t.setAttribute("text-anchor","middle");
+          t.textContent = ["Gen","Apr","Lug","Ott","Dic"][ix];
+          svg.appendChild(t);
+        });
+      }
+
+      function rangeFor(period){
+        const m = state.ui.month;
+
+        if(period === "month"){
+          return {
+            start: new Date(YEAR, m, 1),
+            end: new Date(YEAR, m + 1, 0),
+            label: `${monthNames[m]} ${YEAR}`
+          };
+        }
+
+        if(period === "quarter"){
+          const q = Math.floor(m / 3);
+          const m0 = q * 3;
+          return {
+            start: new Date(YEAR, m0, 1),
+            end: new Date(YEAR, m0 + 3, 0),
+            label: `Q${q+1} ${YEAR} (${monthNames[m0]}–${monthNames[m0+2]})`
+          };
+        }
+
+        if(period === "semester"){
+          const s = (m < 6) ? 0 : 1;
+          const m0 = s * 6;
+          return {
+            start: new Date(YEAR, m0, 1),
+            end: new Date(YEAR, m0 + 6, 0),
+            label: `S${s+1} ${YEAR} (${monthNames[m0]}–${monthNames[m0+5]})`
+          };
+        }
+
+        return {
+          start: new Date(YEAR, 0, 1),
+          end: new Date(YEAR, 11, 31),
+          label: `${YEAR}`
+        };
+      }
+
+      function iterateEntriesInRange(startDate, endDate, fn){
+        const startIso = iso(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+        const endIso = iso(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
+        const keys = Object.keys(state.entries).filter(k => k >= startIso && k <= endIso).sort();
+        keys.forEach(k => fn(k, state.entries[k]));
+      }
+
+      function computeWorkouts(period){
+        const r = rangeFor(period);
+        let gym=0, soccer=0, pool=0;
+        const activeDays = new Set();
+
+        iterateEntriesInRange(r.start, r.end, (k,e)=>{
+          const w = e.workouts || {};
+          const any = !!(w.gym || w.soccer || w.pool);
+          if(any) activeDays.add(k);
+          if(w.gym) gym++;
+          if(w.soccer) soccer++;
+          if(w.pool) pool++;
+        });
+
+        return { ...r, gym, soccer, pool, total:gym + soccer + pool, days:activeDays.size };
+      }
+
+      function computeFood(period){
+        const r = rangeFor(period);
+        const counts = {
+          "Digiuno intermittente (cena)": 0,
+          "Digiuno intermittente (pranzo)": 0,
+          "Digiuno intermittente (colazione)": 0,
+          "Digiuno totale": 0
+        };
+
+        iterateEntriesInRange(r.start, r.end, (k,e)=>{
+          const d = (e.diet || "").trim();
+          if(!d) return;
+          if(counts[d] === undefined) counts[d] = 0;
+          counts[d]++;
+        });
+
+        return { ...r, counts };
+      }
+
+      function refreshProfileUI(){
+        const name = (state.profile.name || "").trim();
+        const age = (state.profile.age || "").toString().trim();
+        const h = (state.profile.heightCm || "").toString().trim();
+
+        const sub = [];
+        if(name) sub.push(name);
+        if(age) sub.push(`${age} anni`);
+        if(h) sub.push(`${h} cm`);
+
+        $("subtitle").textContent = sub.length ? sub.join(" • ") : "Profilo + calendario + dashboard";
+        $("profileBadge").textContent = name || "Profilo non impostato";
+        $("profileMini").textContent = sub.length
+          ? `Profilo: ${sub.join(" • ")}`
+          : "Compila il profilo nelle impostazioni. I dati si salvano automaticamente in locale.";
+
+        const sw = parsePositiveNumber(state.profile.startWeightKg);
+        const tw = parsePositiveNumber(state.goal.targetWeightKg);
+
+        $("kpiStart").textContent = sw !== null ? `${round1(sw)} kg` : "—";
+        $("kpiStartSub").textContent = sw !== null ? "peso iniziale reale" : "imposta nelle impostazioni";
+
+        $("kpiTarget").textContent = tw !== null ? `${round1(tw)} kg` : "—";
+        $("kpiTargetSub").textContent = state.goal.targetDate
+          ? `entro ${formatItDate(state.goal.targetDate)}`
+          : `entro 31/12/${YEAR}`;
+
+        $("goalBadge").textContent = state.goal.targetDate
+          ? `entro ${formatItDate(state.goal.targetDate)}`
+          : `entro 31/12/${YEAR}`;
+
+        const req = requiredMonthlyLoss();
+        if(req === null){
+          $("projectionNote").textContent = "Imposta peso iniziale e peso obiettivo: calcolo la perdita media mensile necessaria e il confronto reale vs proiezione.";
+        } else {
+          const dir = req >= 0 ? "perdere" : "aumentare";
+          $("projectionNote").textContent = `Per ${dir} da ${round1(sw)} kg a ${round1(tw)} kg entro ${$("goalBadge").textContent.replace("entro ","")}, media necessaria: ${round1(Math.abs(req))} kg/mese.`;
+        }
+      }
+
+      function refreshGoalAndProgress(){
+        const last = lastKnownWeight(false);
+        const sw = parsePositiveNumber(state.profile.startWeightKg);
+        const tw = parsePositiveNumber(state.goal.targetWeightKg);
+
+        if(last){
+          $("lastWeightBadge").textContent = `${round1(last.weight)} kg • ${formatItDate(last.date)}`;
+          $("kpiLast").textContent = `${round1(last.weight)} kg`;
+          $("kpiLastSub").textContent = `ultimo inserito: ${formatItDate(last.date)}`;
+        } else {
+          $("lastWeightBadge").textContent = "Nessun dato";
+          $("kpiLast").textContent = "—";
+          $("kpiLastSub").textContent = "nessun peso valido inserito";
+        }
+
+        const today = new Date();
+        $("todayTxt").textContent = `Oggi • ${pad(today.getDate())}/${pad(today.getMonth()+1)}/${today.getFullYear()}`;
+
+        const expected = (sw !== null && tw !== null) ? expectedWeightOn(today) : null;
+        $("kpiExpected").textContent = expected !== null ? `${round1(expected)} kg` : "—";
+        $("kpiExpectedSub").textContent = expected !== null ? "peso previsto oggi" : "serve obiettivo";
+
+        if(sw !== null && last){
+          const lost = sw - last.weight;
+          const sign = lost > 0 ? "−" : lost < 0 ? "+" : "";
+          $("kpiLost").textContent = `${sign}${round1(Math.abs(lost))} kg`;
+          $("kpiLostSub").textContent = "peso iniziale vs ultimo";
+        } else {
+          $("kpiLost").textContent = "—";
+          $("kpiLostSub").textContent = "serve iniziale + ultimo";
+        }
+
+        if(expected === null || !last){
+          $("kpiDelta").textContent = "—";
+          $("kpiDeltaSub").textContent = "serve obiettivo + ultimo peso";
+          $("progressStatus").className = "status warn";
+          $("statusIcon").textContent = "≈";
+          $("statusTitle").textContent = "Dati incompleti";
+          $("statusText").textContent = "La dashboard mostrerà ultimo peso, peso previsto e scarto appena inserisci obiettivo e almeno un peso reale valido.";
+          return;
+        }
+
+        const delta = last.weight - expected;
+        const absd = Math.abs(delta);
+        const sign = delta > 0 ? "+" : delta < 0 ? "−" : "";
+        $("kpiDelta").textContent = `${sign}${round1(absd)} kg`;
+        $("kpiDeltaSub").textContent = `ultimo vs previsto oggi`;
+
+        const needLose = sw > tw;
+        let cls="warn", ico="≈", title="Quasi in linea", text="";
+        const tol = 0.8;
+
+        if(needLose){
+          if(delta <= tol){
+            cls="ok"; ico="✓"; title="In linea";
+            text = `Ultimo peso ${round1(last.weight)} kg. Previsto ${round1(expected)} kg. Stai seguendo bene la proiezione.`;
+          } else if(delta <= 2.5){
+            cls="warn"; ico="!";
+            title="Leggermente sopra";
+            text = `Ultimo peso ${round1(last.weight)} kg, previsto ${round1(expected)} kg. Sei sopra di ${round1(delta)} kg.`;
+          } else {
+            cls="bad"; ico="↗";
+            title="Fuori linea";
+            text = `Ultimo peso ${round1(last.weight)} kg, previsto ${round1(expected)} kg. Scarto alto di ${round1(delta)} kg.`;
+          }
+        } else {
+          if(delta >= -tol){
+            cls="ok"; ico="✓"; title="In linea";
+            text = `Ultimo peso ${round1(last.weight)} kg. Previsto ${round1(expected)} kg.`;
+          } else if(delta >= -2.5){
+            cls="warn"; ico="!";
+            title="Leggermente sotto";
+            text = `Ultimo peso ${round1(last.weight)} kg, previsto ${round1(expected)} kg.`;
+          } else {
+            cls="bad"; ico="↘";
+            title="Fuori linea";
+            text = `Ultimo peso ${round1(last.weight)} kg, previsto ${round1(expected)} kg.`;
+          }
+        }
+
+        $("progressStatus").className = "status " + cls;
+        $("statusIcon").textContent = ico;
+        $("statusTitle").textContent = title;
+        $("statusText").textContent = text;
+      }
+
+      function refreshWorkoutCards(){
+        const r = computeWorkouts($("workoutPeriod").value);
+        $("wTotal").textContent = r.total;
+        $("wGym").textContent = r.gym;
+        $("wSoccer").textContent = r.soccer;
+        $("wPool").textContent = r.pool;
+        $("wDays").textContent = r.days;
+        $("wLabel").textContent = r.label;
+        $("wMix").textContent = `${r.gym}/${r.soccer}/${r.pool}`;
+        $("wPeriodHint").textContent = `Periodo: ${r.label}.`;
+      }
+
+      function refreshFoodCards(){
+        const r = computeFood($("foodPeriod").value);
+        const box = $("foodKpis");
+        box.innerHTML = "";
+
+        const add = (label, value)=>{
+          const d = document.createElement("div");
+          d.className = "kpi";
+          d.innerHTML = `<div class="l">${label}</div><div class="v">${value}</div><div class="sub">giorni</div>`;
+          box.appendChild(d);
+        };
+
+        add("D. interm. (cena)", r.counts["Digiuno intermittente (cena)"] || 0);
+        add("D. interm. (pranzo)", r.counts["Digiuno intermittente (pranzo)"] || 0);
+        add("D. interm. (colazione)", r.counts["Digiuno intermittente (colazione)"] || 0);
+        add("Digiuno totale", r.counts["Digiuno totale"] || 0);
+
+        $("foodPeriodHint").textContent = `Periodo: ${r.label}.`;
+      }
+
+      function refreshAll(){
+        refreshProfileUI();
+        renderWeightChart();
+        refreshGoalAndProgress();
+        refreshWorkoutCards();
+        refreshFoodCards();
       }
 
       function renderCalendar(){
@@ -921,6 +1406,7 @@
         const first = new Date(YEAR, m, 1);
         const offset = jsDowMondayFirst(first);
         const dim = daysInMonth(YEAR, m);
+        const selSet = new Set(state.ui.selectedDays || []);
 
         for(let i=0;i<offset;i++){
           const cell = document.createElement("div");
@@ -928,13 +1414,11 @@
           grid.appendChild(cell);
         }
 
-        const selSet = new Set(state.ui.selectedDays || []);
-
         for(let d=1; d<=dim; d++){
-          const dateIso = iso(YEAR,m,d);
+          const dateIso = iso(YEAR, m, d);
           const e = state.entries[dateIso];
           const cell = document.createElement("div");
-          const monthEnd = isMonthEnd(YEAR,m,d);
+          const monthEnd = isMonthEnd(YEAR, m, d);
 
           cell.className = "day" + (monthEnd ? " monthend" : "");
           if(state.ui.selectedDate === dateIso) cell.classList.add("sel");
@@ -948,41 +1432,38 @@
           mrow.className = "m";
 
           if(e && entryHasAny(e)){
-            const hasW = parseNum(e.weightKg) !== null;
+            const hasW = parsePositiveNumber(e.weightKg) !== null;
             const wo = e.workouts || {};
             const hasDiet = !!(e.diet && e.diet.trim());
 
             if(hasW){
               const t = document.createElement("span");
-              t.className="tag";
-              t.style.background="var(--w)";
+              t.className = "tag";
+              t.style.background = "var(--w)";
               mrow.appendChild(t);
             }
-
-            // ✅ pallini SOLO per attività selezionate
             if(wo.gym){
               const t = document.createElement("span");
-              t.className="tag";
-              t.style.background="var(--g)";
+              t.className = "tag";
+              t.style.background = "var(--g)";
               mrow.appendChild(t);
             }
             if(wo.soccer){
               const t = document.createElement("span");
-              t.className="tag";
-              t.style.background="var(--s)";
+              t.className = "tag";
+              t.style.background = "var(--s)";
               mrow.appendChild(t);
             }
             if(wo.pool){
               const t = document.createElement("span");
-              t.className="tag";
-              t.style.background="var(--p)";
+              t.className = "tag";
+              t.style.background = "var(--p)";
               mrow.appendChild(t);
             }
-
             if(hasDiet){
               const t = document.createElement("span");
-              t.className="tag";
-              t.style.background="var(--d)";
+              t.className = "tag";
+              t.style.background = "var(--d)";
               mrow.appendChild(t);
             }
           }
@@ -1011,20 +1492,37 @@
         }
       }
 
+      function setToggleUI(kind, on){
+        const map = { gym:"tGym", soccer:"tSoccer", pool:"tPool" };
+        const el = $(map[kind]);
+        if(el) el.classList.toggle("on", !!on);
+      }
+
+      function getToggleUI(kind){
+        const map = { gym:"tGym", soccer:"tSoccer", pool:"tPool" };
+        const el = $(map[kind]);
+        return !!(el && el.classList.contains("on"));
+      }
+
       function openDayEditor(){
         if(!state.ui.selectedDate){
           state.ui.selectedDate = iso(YEAR, state.ui.month, 1);
-          saveLS();
         }
+
         const dIso = state.ui.selectedDate;
-        const e = state.entries[dIso] || { weightKg:"", circCm:"", diet:"", workouts:{gym:false,soccer:false,pool:false} };
-        e.workouts = e.workouts || {gym:false,soccer:false,pool:false};
+        const e = state.entries[dIso] || {
+          weightKg:"",
+          circCm:"",
+          diet:"",
+          workouts:{ gym:false, soccer:false, pool:false }
+        };
 
-        $("sheetSub").textContent = itDate(dIso) + " • " + monthNames[state.ui.month] + " " + YEAR;
+        e.workouts = e.workouts || { gym:false, soccer:false, pool:false };
 
-        $("dayWeight").value = (e.weightKg ?? "");
-        $("dayCirc").value = (e.circCm ?? "");
-        $("dayDiet").value = (e.diet ?? "");
+        $("sheetSub").textContent = `${formatItDate(dIso)} • ${monthNames[state.ui.month]} ${YEAR}`;
+        $("dayWeight").value = e.weightKg ?? "";
+        $("dayCirc").value = e.circCm ?? "";
+        $("dayDiet").value = e.diet ?? "";
 
         setToggleUI("gym", !!e.workouts.gym);
         setToggleUI("soccer", !!e.workouts.soccer);
@@ -1032,399 +1530,9 @@
 
         $("modal").classList.add("open");
       }
-      function closeDayEditor(){ $("modal").classList.remove("open"); }
 
-      function setToggleUI(kind, on){
-        const map = { gym:"tGym", soccer:"tSoccer", pool:"tPool" };
-        const el = $(map[kind]);
-        if(!el) return;
-        el.classList.toggle("on", !!on);
-      }
-      function getToggleUI(kind){
-        const map = { gym:"tGym", soccer:"tSoccer", pool:"tPool" };
-        const el = $(map[kind]);
-        return el && el.classList.contains("on");
-      }
-
-      function monthEndWeights(){
-        const arr = new Array(12).fill(null);
-        for(let m=0; m<12; m++){
-          const dim = daysInMonth(YEAR, m);
-          let found = null;
-          for(let d=dim; d>=1; d--){
-            const k = iso(YEAR,m,d);
-            const e = state.entries[k];
-            if(e){
-              const w = parseNum(e.weightKg);
-              if(w !== null){ found = w; break; }
-            }
-          }
-          arr[m] = found;
-        }
-        return arr;
-      }
-
-      // ✅ usa lastWeight come fonte primaria, fallback scan entries
-      function lastKnownWeight(forceScan=false){
-        if(!forceScan && state.lastWeight && state.lastWeight.date && state.lastWeight.weight !== null){
-          return { date: state.lastWeight.date, weight: Number(state.lastWeight.weight) };
-        }
-        const keys = Object.keys(state.entries).sort();
-        for(let i=keys.length-1; i>=0; i--){
-          const e = state.entries[keys[i]];
-          const w = e ? parseNum(e.weightKg) : null;
-          if(w !== null) return { date: keys[i], weight: w };
-        }
-        return null;
-      }
-
-      function expectedWeightOn(dateObj){
-        const sw = parseNum(state.profile.startWeightKg);
-        const tw = parseNum(state.goal.targetWeightKg);
-        const td = state.goal.targetDate ? new Date(state.goal.targetDate+"T00:00:00") : new Date(`${YEAR}-12-31T00:00:00`);
-        if(sw === null || tw === null) return null;
-
-        const start = new Date(`${YEAR}-01-01T00:00:00`);
-        const cur = new Date(dateObj.getFullYear(), dateObj.getMonth(), dateObj.getDate());
-        const totalDays = (td - start) / 86400000;
-        if(totalDays <= 0) return tw;
-
-        const curDays = (cur - start) / 86400000;
-        const t = clamp(curDays / totalDays, 0, 1);
-        return sw + (tw - sw) * t;
-      }
-
-      function requiredMonthlyLoss(){
-        const sw = parseNum(state.profile.startWeightKg);
-        const tw = parseNum(state.goal.targetWeightKg);
-        const td = state.goal.targetDate ? new Date(state.goal.targetDate+"T00:00:00") : new Date(`${YEAR}-12-31T00:00:00`);
-        if(sw === null || tw === null) return null;
-
-        const start = new Date(`${YEAR}-01-01T00:00:00`);
-        let months = (td.getFullYear()-start.getFullYear())*12 + (td.getMonth()-start.getMonth()) + 1;
-        months = clamp(months, 1, 24);
-        const diff = sw - tw;
-        return diff / months;
-      }
-
-      function renderWeightChart(){
-        const svg = $("weightSvg");
-        svg.innerHTML = "";
-
-        const wArr = monthEndWeights();
-        const sw = parseNum(state.profile.startWeightKg);
-        const tw = parseNum(state.goal.targetWeightKg);
-
-        const proj = new Array(12).fill(null);
-        if(sw !== null && tw !== null){
-          for(let m=0; m<12; m++){
-            const t = (m) / 11;
-            proj[m] = sw + (tw - sw) * t;
-          }
-        }
-
-        const vals = [];
-        wArr.forEach(v=> { if(v !== null) vals.push(v); });
-        proj.forEach(v=> { if(v !== null) vals.push(v); });
-
-        let vmin = 60, vmax = 140;
-        if(vals.length){
-          vmin = Math.min(...vals);
-          vmax = Math.max(...vals);
-          const padv = Math.max(2, (vmax - vmin) * 0.12);
-          vmin -= padv; vmax += padv;
-        }
-        if(vmax - vmin < 5){ vmax += 3; vmin -= 2; }
-
-        const W = 340, H = 180;
-        const padX = 18, padY = 16;
-        const plotW = W - padX*2;
-        const plotH = H - padY*2;
-
-        const x = (i)=> padX + (plotW * (i/11));
-        const y = (v)=> padY + (plotH * (1 - ((v - vmin) / (vmax - vmin))));
-
-        for(let i=0;i<3;i++){
-          const yy = padY + (plotH*(i/2));
-          const line = document.createElementNS("http://www.w3.org/2000/svg","line");
-          line.setAttribute("x1","0"); line.setAttribute("x2",W);
-          line.setAttribute("y1",yy); line.setAttribute("y2",yy);
-          line.setAttribute("stroke","rgba(255,255,255,.08)");
-          line.setAttribute("stroke-width","1");
-          svg.appendChild(line);
-        }
-
-        const mkText = (tx,ty,txt,op=1)=>{
-          const t = document.createElementNS("http://www.w3.org/2000/svg","text");
-          t.setAttribute("x", tx);
-          t.setAttribute("y", ty);
-          t.setAttribute("fill", `rgba(159,178,204,${op})`);
-          t.setAttribute("font-size", "11");
-          t.setAttribute("font-weight","800");
-          t.textContent = txt;
-          return t;
-        };
-        svg.appendChild(mkText(8, 14, `${round1(vmax)} kg`, .9));
-        svg.appendChild(mkText(8, H-6, `${round1(vmin)} kg`, .7));
-
-        function polyline(points, stroke, dashed=false){
-          const pl = document.createElementNS("http://www.w3.org/2000/svg","polyline");
-          pl.setAttribute("fill","none");
-          pl.setAttribute("stroke", stroke);
-          pl.setAttribute("stroke-width","3");
-          pl.setAttribute("stroke-linecap","round");
-          pl.setAttribute("stroke-linejoin","round");
-          if(dashed) pl.setAttribute("stroke-dasharray","6 6");
-          pl.setAttribute("points", points.map(p=> `${p[0]},${p[1]}`).join(" "));
-          return pl;
-        }
-
-        if(proj.some(v=>v!==null)){
-          const pts = proj.map((v,i)=> [x(i), y(v)]);
-          svg.appendChild(polyline(pts, "rgba(14,165,164,.95)", true));
-        }
-
-        let seg = [];
-        for(let i=0;i<12;i++){
-          const v = wArr[i];
-          if(v === null){
-            if(seg.length >= 2) svg.appendChild(polyline(seg, "rgba(96,165,250,.95)", false));
-            seg = [];
-            continue;
-          }
-          seg.push([x(i), y(v)]);
-        }
-        if(seg.length >= 2) svg.appendChild(polyline(seg, "rgba(96,165,250,.95)", false));
-
-        wArr.forEach((v,i)=>{
-          if(v === null) return;
-          const c = document.createElementNS("http://www.w3.org/2000/svg","circle");
-          c.setAttribute("cx", x(i));
-          c.setAttribute("cy", y(v));
-          c.setAttribute("r","4.2");
-          c.setAttribute("fill","rgba(96,165,250,1)");
-          c.setAttribute("stroke","rgba(255,255,255,.18)");
-          c.setAttribute("stroke-width","1");
-          svg.appendChild(c);
-        });
-
-        const tickIdx = [0,3,6,9,11];
-        tickIdx.forEach((i,ix)=>{
-          const t = document.createElementNS("http://www.w3.org/2000/svg","text");
-          t.setAttribute("x", x(i));
-          t.setAttribute("y", H-6);
-          t.setAttribute("fill", "rgba(159,178,204,.85)");
-          t.setAttribute("font-size","10");
-          t.setAttribute("font-weight","900");
-          t.setAttribute("text-anchor","middle");
-          t.textContent = ["Gen","Apr","Lug","Ott","Dic"][ix];
-          svg.appendChild(t);
-        });
-      }
-
-      function rangeFor(period){
-        const m = state.ui.month;
-        if(period === "month"){
-          const start = new Date(YEAR, m, 1);
-          const end = new Date(YEAR, m+1, 0);
-          return { start, end, label: `${monthNames[m]} ${YEAR}` };
-        }
-        if(period === "quarter"){
-          const q = Math.floor(m/3);
-          const m0 = q*3;
-          const start = new Date(YEAR, m0, 1);
-          const end = new Date(YEAR, m0+3, 0);
-          return { start, end, label: `Q${q+1} ${YEAR} (${monthNames[m0]}–${monthNames[m0+2]})` };
-        }
-        if(period === "semester"){
-          const s = (m<6) ? 0 : 1;
-          const m0 = s*6;
-          const start = new Date(YEAR, m0, 1);
-          const end = new Date(YEAR, m0+6, 0);
-          return { start, end, label: `S${s+1} ${YEAR} (${monthNames[m0]}–${monthNames[m0+5]})` };
-        }
-        return { start: new Date(YEAR,0,1), end: new Date(YEAR,11,31), label: `${YEAR}` };
-      }
-
-      function iterateEntriesInRange(startDate, endDate, fn){
-        const startIso = iso(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-        const endIso = iso(endDate.getFullYear(), endDate.getMonth(), endDate.getDate());
-        const keys = Object.keys(state.entries).filter(k => k >= startIso && k <= endIso).sort();
-        keys.forEach(k => fn(k, state.entries[k]));
-      }
-
-      function computeWorkouts(period){
-        const r = rangeFor(period);
-        let gym=0, soccer=0, pool=0;
-        const activeDays = new Set();
-
-        iterateEntriesInRange(r.start, r.end, (k,e)=>{
-          const w = (e.workouts || {});
-          const any = !!(w.gym || w.soccer || w.pool);
-          if(any) activeDays.add(k);
-          if(w.gym) gym++;
-          if(w.soccer) soccer++;
-          if(w.pool) pool++;
-        });
-
-        const total = gym + soccer + pool;
-        return { ...r, gym, soccer, pool, total, days: activeDays.size };
-      }
-
-      function computeFood(period){
-        const r = rangeFor(period);
-        const counts = {
-          "Digiuno intermittente (cena)": 0,
-          "Digiuno intermittente (pranzo)": 0,
-          "Digiuno intermittente (colazione)": 0,
-          "Digiuno totale": 0
-        };
-        let none = 0;
-
-        iterateEntriesInRange(r.start, r.end, (k,e)=>{
-          const d = (e.diet || "").trim();
-          if(!d) { none++; return; }
-          if(counts[d] === undefined) counts[d] = 0;
-          counts[d]++;
-        });
-
-        const total = Object.values(counts).reduce((a,b)=>a+b,0);
-        return { ...r, counts, none, totalLogged: total, totalDaysWithAny: total + none };
-      }
-
-      function refreshProfileUI(){
-        const name = (state.profile.name || "").trim();
-        const age = (state.profile.age || "").toString().trim();
-        const h = (state.profile.heightCm || "").toString().trim();
-
-        const sub = [];
-        if(name) sub.push(name);
-        if(age) sub.push(`${age} anni`);
-        if(h) sub.push(`${h} cm`);
-
-        $("subtitle").textContent = sub.length ? sub.join(" • ") : "Profilo + calendario + dashboard";
-        $("profileBadge").textContent = name ? name : "Profilo non impostato";
-        $("profileMini").textContent = sub.length ? `Profilo: ${sub.join(" • ")}` : "Compila il profilo nelle impostazioni. I dati si salvano automaticamente in locale.";
-
-        const sw = parseNum(state.profile.startWeightKg);
-        const tw = parseNum(state.goal.targetWeightKg);
-
-        $("kpiStart").textContent = (sw !== null) ? `${round1(sw)} kg` : "—";
-        $("kpiStartSub").textContent = (sw !== null) ? "valore iniziale" : "imposta nelle impostazioni";
-
-        $("kpiTarget").textContent = (tw !== null) ? `${round1(tw)} kg` : "—";
-        $("kpiTargetSub").textContent = state.goal.targetDate ? `entro ${itDate(state.goal.targetDate)}` : `entro 31/12/${YEAR}`;
-
-        $("goalBadge").textContent = state.goal.targetDate ? `entro ${itDate(state.goal.targetDate)}` : `entro 31/12/${YEAR}`;
-
-        const req = requiredMonthlyLoss();
-        if(req === null){
-          $("projectionNote").textContent = "Imposta peso iniziale e peso obiettivo: calcolo la perdita media mensile necessaria e il confronto reale vs proiezione.";
-        } else {
-          const dir = req >= 0 ? "perdere" : "aumentare";
-          $("projectionNote").textContent = `Per ${dir} da ${round1(sw)} kg a ${round1(tw)} kg entro ${$("goalBadge").textContent.replace("entro ","")}, media necessaria: ${round1(Math.abs(req))} kg/mese.`;
-        }
-      }
-
-      function refreshGoalAndProgress(){
-        const last = lastKnownWeight(false);
-        const sw = parseNum(state.profile.startWeightKg);
-        const tw = parseNum(state.goal.targetWeightKg);
-
-        if(last){
-          $("lastWeightBadge").textContent = `${round1(last.weight)} kg • ${itDate(last.date)}`;
-          $("kpiLast").textContent = `${round1(last.weight)} kg`;
-          $("kpiLastSub").textContent = `ultimo: ${itDate(last.date)}`;
-        } else {
-          $("lastWeightBadge").textContent = "Nessun dato";
-          $("kpiLast").textContent = "—";
-          $("kpiLastSub").textContent = "nessun inserimento";
-        }
-
-        const today = new Date();
-        $("todayTxt").textContent = `Oggi • ${pad(today.getDate())}/${pad(today.getMonth()+1)}/${today.getFullYear()}`;
-
-        let expected = null;
-        if(sw !== null && tw !== null) expected = expectedWeightOn(today);
-
-        if(expected === null || !last){
-          $("kpiDelta").textContent = "—";
-          $("kpiDeltaSub").textContent = "serve obiettivo + peso reale";
-          $("progressStatus").className = "status warn";
-          $("statusIcon").textContent = "≈";
-          $("statusTitle").textContent = "Imposta profilo e obiettivo";
-          $("statusText").textContent = "Inserisci peso iniziale, obiettivo e almeno una misurazione: ti dico se sei in linea con la proiezione.";
-          return;
-        }
-
-        const delta = last.weight - expected;
-        const absd = Math.abs(delta);
-        const sign = delta > 0 ? "+" : "−";
-        $("kpiDelta").textContent = `${sign}${round1(absd)} kg`;
-        $("kpiDeltaSub").textContent = `atteso oggi: ${round1(expected)} kg`;
-
-        const needLose = (sw > tw);
-        let cls="warn", ico="≈", title="Quasi in linea", text="";
-        const tol = 0.8;
-
-        if(needLose){
-          if(delta <= tol){ cls="ok"; ico="✓"; title="In linea"; text = `Sei a ${round1(last.weight)} kg, proiezione ${round1(expected)} kg: buon ritmo.`; }
-          else if(delta <= 2.5){ cls="warn"; ico="!"; title="Leggermente sopra"; text = `Sei sopra la proiezione di ${round1(delta)} kg. Piccole correzioni e rientri.`; }
-          else { cls="bad"; ico="↗"; title="Fuori linea"; text = `Sei sopra la proiezione di ${round1(delta)} kg. Serve più costanza o ricalibrare obiettivo.`; }
-        } else {
-          if(delta >= -tol){ cls="ok"; ico="✓"; title="In linea"; text = `Sei a ${round1(last.weight)} kg, proiezione ${round1(expected)} kg: buon ritmo.`; }
-          else if(delta >= -2.5){ cls="warn"; ico="!"; title="Leggermente sotto"; text = `Sei sotto la proiezione di ${round1(absd)} kg.`; }
-          else { cls="bad"; ico="↘"; title="Fuori linea"; text = `Sei sotto la proiezione di ${round1(absd)} kg.`; }
-        }
-
-        $("progressStatus").className = "status " + cls;
-        $("statusIcon").textContent = ico;
-        $("statusTitle").textContent = title;
-        $("statusText").textContent = text;
-      }
-
-      function refreshWorkoutCards(){
-        const period = $("workoutPeriod").value;
-        const r = computeWorkouts(period);
-
-        $("wTotal").textContent = r.total;
-        $("wGym").textContent = r.gym;
-        $("wSoccer").textContent = r.soccer;
-        $("wPool").textContent = r.pool;
-        $("wDays").textContent = r.days;
-        $("wLabel").textContent = r.label;
-        $("wMix").textContent = `${r.gym}/${r.soccer}/${r.pool}`;
-        $("wPeriodHint").textContent = `Periodo: ${r.label}. (Calcolato sui flag giornalieri)`;
-      }
-
-      function refreshFoodCards(){
-        const period = $("foodPeriod").value;
-        const r = computeFood(period);
-
-        const box = $("foodKpis");
-        box.innerHTML = "";
-
-        const add = (label, value)=>{
-          const d = document.createElement("div");
-          d.className = "kpi";
-          d.innerHTML = `<div class="l">${label}</div><div class="v">${value}</div><div class="sub">giorni</div>`;
-          box.appendChild(d);
-        };
-
-        add("D. interm. (cena)", r.counts["Digiuno intermittente (cena)"] || 0);
-        add("D. interm. (pranzo)", r.counts["Digiuno intermittente (pranzo)"] || 0);
-        add("D. interm. (colazione)", r.counts["Digiuno intermittente (colazione)"] || 0);
-        add("Digiuno totale", r.counts["Digiuno totale"] || 0);
-
-        $("foodPeriodHint").textContent = `Periodo: ${r.label}. (Conteggio su scelta “Alimentazione” giornaliera)`;
-      }
-
-      function refreshAll(){
-        refreshProfileUI();
-        renderWeightChart();
-        refreshGoalAndProgress();
-        refreshWorkoutCards();
-        refreshFoodCards();
+      function closeDayEditor(){
+        $("modal").classList.remove("open");
       }
 
       function bindSettings(){
@@ -1433,7 +1541,6 @@
         $("height").value = state.profile.heightCm ?? "";
         $("startWeight").value = state.profile.startWeightKg ?? "";
         $("startCirc").value = state.profile.startCircCm ?? "";
-
         $("targetWeight").value = state.goal.targetWeightKg ?? "";
         $("targetDate").value = state.goal.targetDate ?? `${YEAR}-12-31`;
 
@@ -1443,10 +1550,8 @@
           state.profile.heightCm = $("height").value;
           state.profile.startWeightKg = $("startWeight").value;
           state.profile.startCircCm = $("startCirc").value;
-
           state.goal.targetWeightKg = $("targetWeight").value;
           state.goal.targetDate = $("targetDate").value || `${YEAR}-12-31`;
-
           saveLS();
           refreshAll();
         };
@@ -1474,6 +1579,7 @@
           if(!state.ui.selectedDate || state.ui.selectedDate.slice(0,7) !== `${YEAR}-${pad(state.ui.month+1)}`){
             state.ui.selectedDate = iso(YEAR, state.ui.month, 1);
           }
+
           saveLS();
           renderCalendar();
           updateBatchUI();
@@ -1484,15 +1590,19 @@
       function bindTabs(){
         tabs.forEach(t=>{
           t.addEventListener("click", ()=>{
-            tabs.forEach(x=>x.classList.remove("active"));
+            tabs.forEach(x=> x.classList.remove("active"));
             t.classList.add("active");
             const tab = t.dataset.tab;
 
-            Object.keys(views).forEach(k=> views[k].style.display = (k===tab) ? "" : "none");
+            Object.keys(views).forEach(k=>{
+              views[k].style.display = (k === tab) ? "" : "none";
+            });
+
             if(tab === "cal"){
               renderCalendar();
               updateBatchUI();
             }
+
             refreshAll();
           });
         });
@@ -1511,27 +1621,38 @@
 
         $("saveDay").addEventListener("click", ()=>{
           const k = state.ui.selectedDate;
-          const e = state.entries[k] || { workouts:{gym:false,soccer:false,pool:false} };
-          e.workouts = e.workouts || {gym:false,soccer:false,pool:false};
+          if(!k) return;
 
-          const wNum = parseNum($("dayWeight").value);
-          const cNum = parseNum($("dayCirc").value);
+          const e = state.entries[k] || {
+            weightKg:"",
+            circCm:"",
+            diet:"",
+            workouts:{ gym:false, soccer:false, pool:false }
+          };
+          e.workouts = e.workouts || { gym:false, soccer:false, pool:false };
+
+          const wNum = parsePositiveNumber($("dayWeight").value);
+          const cNum = parseNonNegativeNumber($("dayCirc").value);
 
           e.weightKg = (wNum !== null) ? String(wNum) : "";
-          e.circCm   = (cNum !== null) ? String(cNum) : "";
+          e.circCm = (cNum !== null) ? String(cNum) : "";
           e.diet = ($("dayDiet").value || "").trim();
 
           e.workouts.gym = getToggleUI("gym");
           e.workouts.soccer = getToggleUI("soccer");
           e.workouts.pool = getToggleUI("pool");
 
-          // ✅ NEW: memorizza ultimo peso registrato (persistente)
-          if(wNum !== null){
-            state.lastWeight = { date: k, weight: wNum };
+          if(entryHasAny(e)){
+            state.entries[k] = e;
+          } else {
+            delete state.entries[k];
           }
 
-          if(!entryHasAny(e)) delete state.entries[k];
-          else state.entries[k] = e;
+          if(wNum !== null){
+            state.lastWeight = { date:k, weight:wNum };
+          } else if(state.lastWeight && state.lastWeight.date === k){
+            syncLastWeightFromEntries();
+          }
 
           saveLS();
           closeDayEditor();
@@ -1542,13 +1663,12 @@
 
         $("clearDay").addEventListener("click", ()=>{
           const k = state.ui.selectedDate;
+          if(!k) return;
+
           delete state.entries[k];
 
-          // ✅ se sto cancellando il giorno dell'ultimo peso, lo ricalcolo
           if(state.lastWeight && state.lastWeight.date === k){
-            state.lastWeight = { date:null, weight:null };
-            const lw = lastKnownWeight(true);
-            if(lw) state.lastWeight = { date: lw.date, weight: lw.weight };
+            syncLastWeightFromEntries();
           }
 
           saveLS();
@@ -1608,9 +1728,11 @@
         });
 
         $("importBtn").addEventListener("click", ()=> $("filePicker").click());
+
         $("filePicker").addEventListener("change", async (e)=>{
           const file = e.target.files && e.target.files[0];
           if(!file) return;
+
           try{
             const txt = await file.text();
             const obj = JSON.parse(txt);
@@ -1622,19 +1744,9 @@
             if(obj.lastWeight) state.lastWeight = { ...state.lastWeight, ...obj.lastWeight };
             if(obj.ui) state.ui = { ...state.ui, ...obj.ui };
 
-            if(!state.goal.targetDate) state.goal.targetDate = `${YEAR}-12-31`;
-            if(!Number.isFinite(state.ui.month)) state.ui.month = 0;
             if(!Array.isArray(state.ui.selectedDays)) state.ui.selectedDays = [];
             state.ui.multiSel = !!state.ui.multiSel;
-
-            if(!state.lastWeight || typeof state.lastWeight !== "object"){
-              state.lastWeight = { date:null, weight:null };
-            }
-            // se manca lastWeight, lo ricavo
-            if(!state.lastWeight.date || state.lastWeight.weight === null){
-              const lw = lastKnownWeight(true);
-              if(lw) state.lastWeight = { date: lw.date, weight: lw.weight };
-            }
+            syncLastWeightFromEntries();
 
             saveLS();
             bindSettings();
@@ -1660,31 +1772,21 @@
 
       function initDefaultSelection(){
         const now = new Date();
-        const month = (state.ui.month ?? 0);
 
         if(!state.ui.selectedDate){
           if(now.getFullYear() === YEAR){
             state.ui.month = now.getMonth();
             state.ui.selectedDate = iso(YEAR, now.getMonth(), now.getDate());
           } else {
-            state.ui.month = clamp(month, 0, 11);
+            state.ui.month = clamp(state.ui.month ?? 0, 0, 11);
             state.ui.selectedDate = iso(YEAR, state.ui.month, 1);
           }
-          saveLS();
         } else {
           const m = Number(state.ui.selectedDate.slice(5,7)) - 1;
-          if(Number.isFinite(m)) state.ui.month = clamp(m,0,11);
+          if(Number.isFinite(m)) state.ui.month = clamp(m, 0, 11);
         }
 
-        // se lastWeight non è settato, prova a ricavarlo
-        if(!state.lastWeight || typeof state.lastWeight !== "object"){
-          state.lastWeight = { date:null, weight:null };
-        }
-        if(!state.lastWeight.date || state.lastWeight.weight === null){
-          const lw = lastKnownWeight(true);
-          if(lw) state.lastWeight = { date: lw.date, weight: lw.weight };
-        }
-
+        syncLastWeightFromEntries();
         updateSelectedBadge();
       }
 
